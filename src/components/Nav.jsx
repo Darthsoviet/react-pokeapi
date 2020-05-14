@@ -18,7 +18,11 @@ export const Nav=withRouter( (props)=>{
     }
     const mostrarMenuTipo=()=>{
        let menuTipo=document.getElementById("MenuTipo");
-        menuTipo.style.display="block";
+        menuTipo.style.width="100%";
+        menuTipo.style.height="100%";
+        
+
+        
 
     }
     
@@ -31,7 +35,7 @@ export const Nav=withRouter( (props)=>{
                     <button onClick={irInicio}>Inicio</button>
                 </li>
                 <li>
-                    <button onClick={irPokemons}>ver Pokemons</button>
+                    <button onClick={irPokemons}>ver Todos</button>
                 </li>
                 <li>
                     <button onClick={mostrarMenuTipo}>filtrar por tipo</button>

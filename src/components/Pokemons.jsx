@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 import { PokemonCard } from "./PokemonCard"
-import { render } from 'react-dom';
 
 export const Pokemons = () => {
 
-    let url = "https://pokeapi.co/api/v2/pokemon";
+
+    const [url, seturl] = useState("https://pokeapi.co/api/v2/pokemon");
     const [lista, setlista] = useState([]);
     const [siguiente, setsiguiente] = useState("");
     const [anterior, setanterior] = useState("");
@@ -18,24 +18,29 @@ export const Pokemons = () => {
 
 
     }
-    const toggleShiny = () => {
-        setshiny(!shiny);
-        getPokemons(url).then(pintarLista);    }
+    const toggleShiny = async () => {
+     setshiny(!shiny);
+        
+        
+    }
 
     const siguienteHandleOnClick = () => {
+        seturl(siguiente);
         getPokemons(siguiente).then(pintarLista);
+
+
 
     }
 
     const anteriorHandleOnClick = () => {
+        seturl(anterior);
         getPokemons(anterior).then(pintarLista);
 
     }
 
 
-
-    const pintarLista = (data) => {
-
+    
+    const pintarLista = useCallback((data) => {
         setsiguiente(data.next);
         setanterior(data.previous);
         let temp = data.results.map((elemento, i) => {
@@ -44,15 +49,15 @@ export const Pokemons = () => {
 
             return <PokemonCard url={elemento.url} shiny={shiny} key={i} />
         });
-
         setlista(temp);
 
-    }
+
+    },[shiny]);
 
     useEffect(() => {
         getPokemons(url).then(pintarLista);
 
-    }, [setlista, url]);
+    }, [setlista, url,pintarLista]);
     return (
         <main>
             <ul className={"listaPokemons"}>
@@ -60,10 +65,11 @@ export const Pokemons = () => {
             </ul>
             <div className="botones">
                 <button className="anterior" onClick={anteriorHandleOnClick} >Anterior</button>
+                <button style={{margin:"0 auto"}} className={`${shiny}`}  onClick={toggleShiny} name="shiny" id="shiny" >shiny</button>
                 <button className="siguiente" onClick={siguienteHandleOnClick} >Siguiente</button>
 
             </div>
-            <button onClick={toggleShiny} name="shiny" id="shiny">hola</button>
+
 
 
         </main>

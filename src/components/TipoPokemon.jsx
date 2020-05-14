@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import {Redirect} from "react-router-dom";
+import React, { useEffect, useState, useCallback } from 'react';
 import { PokemonCard } from "./PokemonCard"
 
 export const TipoPokemon = (props) => {
-
+    
     let url="https://pokeapi.co/api/v2/type/";
     let tipo= props.match.params.tipo;
     const [lista, setlista] = useState([]);
-    const [actual, setactual] = useState("");
+    const [shiny, setshiny] = useState(false);
 
     const getPokemons = async (url) => {
         let response = await fetch(url, { method: "GET" });
@@ -19,24 +18,27 @@ export const TipoPokemon = (props) => {
 
     }
 
-    
+    const toggleShiny = async () => {
+        setshiny(!shiny);
+           
+           
+       }
 
-    const pintarLista =(data)=> {
+    const pintarLista =useCallback((data)=> {
             console.log(data.pokemon);
             
             let temp = data.pokemon.map((elemento, i) => {
-                return <PokemonCard url={elemento.pokemon.url} key={i} />
+                return <PokemonCard url={elemento.pokemon.url} shiny={shiny} key={i} />
             });
 
             setlista(temp);
 
-    }
+    },[shiny]);
 
     useEffect(() => {
         getPokemons(url+tipo).then(pintarLista);
-        setactual(tipo);
 
-    }, [setlista,url]);
+    }, [setlista,url,tipo,pintarLista]);
     return (
         <>
         <main>
@@ -44,8 +46,10 @@ export const TipoPokemon = (props) => {
                 {lista}
             </ul>
             
-            
+            <div className="botones">
+                <button style={{margin:"0 auto"}} className={`fixed-bottom ${shiny}`}  onClick={toggleShiny} name="shiny" id="shiny" >shiny</button>
 
+            </div>
 
         </main>
         </>

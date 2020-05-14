@@ -1,5 +1,5 @@
 import React from "react";
-import {withRouter,Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 
 export const MenuTipo = withRouter((props) => {
@@ -8,14 +8,17 @@ export const MenuTipo = withRouter((props) => {
 
     const handlOnClick = () => {
         let elemento = document.getElementById("MenuTipo");
-        elemento.style.display = "none"
+        elemento.style.width = "0%";
+        elemento.style.height = "0%";
+
+
         
 
     }
 
     return (
         <div onClick={handlOnClick} id="MenuTipo">
-            <div className="menuTipoInterno">
+            <div className="menuTipoInterno" id="menuTipoInterno">
                 <div className="contenedor">
 
                     <button onClick={()=>{history.push("/pokemons/tipo/13")}} className={"electrico"}>Electrico</button>

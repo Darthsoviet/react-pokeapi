@@ -1,0 +1,63 @@
+@mixin Pokemon {
+    .pokemon{
+        width: 75%;
+        background-color: #252525;
+        border-radius: 5px;
+        margin: 7% auto ;
+        h1{
+            text-align: center;
+            text-transform: capitalize;
+        }
+        .contenidoPokemon{
+            display: grid;
+            width: 100%;
+            height: auto;
+            grid-template-columns: 1fr;
+            color: white;
+            text-align: center;            
+            .imagenPokemon{
+                margin: 0 auto ;
+                max-width: 100%;
+                max-height:100% ;
+
+    
+                
+            }
+            .descripcion{
+                margin-bottom: 5vh;;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                span{
+                    text-align: center;
+                    margin: auto 0;
+                    color: white;
+                    display: block;
+                }
+                ul{
+                    display: block;
+                    
+                }
+                
+            }
+            div{
+               
+                h2,h3,h4{
+                    text-align: center;
+                    color: white;
+                }
+                
+                ul{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    li{
+                        font-size: smaller;
+                        color: white;
+                    }
+                }
+                
+            }
+        }
+       
+    }
+    
+}

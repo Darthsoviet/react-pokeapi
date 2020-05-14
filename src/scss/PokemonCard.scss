@@ -9,7 +9,7 @@
         grid-template-rows: repeat(6,1fr);
         grid-template-columns: repeat(5,auto);
         overflow: hidden;
-
+        cursor:pointer;
         grid-template-areas:
                      "nombre nombre nombre nombre id"
                      "imagen imagen imagen imagen imagen"

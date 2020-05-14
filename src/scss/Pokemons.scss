@@ -3,7 +3,7 @@
     .listaPokemons{
         margin-top: 5vh;
         display: grid;
-        grid-template-columns: repeat(5,1fr);
+        grid-template-columns: repeat(10,1fr);
         list-style: none;
         gap: 5px;
         row-gap: 40px;
@@ -39,6 +39,15 @@
         .anterior{
             color:blue;
             border: blue 2px solid;
+        }
+        .true{
+            background-color:goldenrod;
+            border: 2px solid goldenrod;
+        }
+        .false{
+            background-color:transparent;
+            border: 2px solid goldenrod;
+            color: goldenrod;
         }
     }
 }
