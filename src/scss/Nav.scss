@@ -1,0 +1,38 @@
+@mixin Nav {
+    nav {
+        background-color: black;
+
+        ul {
+            list-style: none;
+            height: 10vh;
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: auto;
+
+            li { 
+                display: flex;
+                align-items: center;
+                button {
+                    color: white;
+                    height: 80%;
+                    background-color: transparent;
+                    display: block;
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    transition: all .5s;
+
+                    &:hover {
+                        border: goldenrod 2px solid;
+                        border-radius: 4px;
+                        color: goldenrod;
+                        transition: all .5s;
+
+                    }
+                }
+
+            }
+        }
+
+    }
+}

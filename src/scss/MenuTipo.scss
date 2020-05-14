@@ -1,0 +1,275 @@
+@mixin MenuTipo {
+    #MenuTipo {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 3;
+        align-items: center;
+
+        .menuTipoInterno {
+            z-index: 10;
+            border: gold 3px solid;
+            border-radius: 15px;
+            padding: 6%;
+            width: 35vw;
+            height: auto;
+            margin: 6% auto;
+            display: block;
+            background-color: black;
+            .contenedor{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            button {
+                margin: 3px auto;
+                background: transparent;
+                border: none;
+                display: block;
+                width: 80%;
+                padding-bottom: 2px;
+                transition: .4s;
+                border-radius: 3%;
+            }
+
+            .electrico {
+                color: gray;
+                background-color: yellow;
+                border: 2px solid yellow;
+
+
+                &:hover {
+                    background-color: transparent;
+                    color: yellow;
+                    border: 2px solid yellow;
+                }
+            }
+
+            .fuego {
+
+                color: white;
+                border: 2px solid orange;
+                background-color: orange;
+
+                &:hover {
+                    background-color: transparent;
+                    color: orange;
+                    border: 2px solid orange;
+
+                }
+
+            }
+
+
+            .dragon {
+                color: white;
+                border: 2px solid #2153bf;
+                background-color: #2153bf;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #2153bf;
+                    border: 2px solid #2153bf;
+
+                }
+
+            }
+
+            .agua {
+                color: white;
+                border: 2px solid blue;
+                background-color: blue;
+
+                &:hover {
+                    background-color: transparent;
+                    color: blue;
+                    border: 2px solid blue;
+                }
+
+            }
+
+            .volador {
+                color: white;
+                background-color: deepskyblue;
+                border: 2px solid deepskyblue;
+
+                &:hover {
+                    background-color: transparent;
+                    color: deepskyblue;
+                    border: 2px solid deepskyblue;
+
+                }
+
+            }
+
+            .planta {
+                color: white;
+                background-color: #0af775;
+                border: 2px solid #0af775;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #0af775;
+                    border: 2px solid #0af775;
+
+                }
+
+            }
+
+            .insecto {
+                color: white;
+                border: 2px solid #7dc902;
+                background-color: #7dc902;
+
+                &:hover {
+                    color: #7dc902;
+                    border: 2px solid #7dc902;
+                    background-color: transparent;
+
+                }
+
+            }
+
+            .normal {
+                color: white;
+                border: 2px solid gray;
+                background-color: gray;
+
+                &:hover {
+                    background-color: transparent;
+                    color: gray;
+                    border: 2px solid gray
+                }
+
+            }
+
+            .veneno {
+                background-color: #980af7;
+                color: white;
+                border: 2px solid #980af7;
+
+                &:hover {
+                    color: #980af7;
+                    background-color: transparent;
+                    border: 2px solid #980af7;
+                }
+            }
+
+            .tierra {
+                color: white;
+                background-color: #b3773b;
+                border: 2px solid #b3773b;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #b3773b;
+                    border: 2px solid #b3773b;
+                }
+            }
+
+            .roca {
+                color: white;
+                background-color: #949370;
+                border: 2px solid #949370;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #949370;
+                    border: 2px solid #949370;
+                }
+            }
+
+            .hada {
+                background-color: rgb(255, 170, 234);
+                color: white;
+                border: 2px solid rgb(255, 170, 234);
+
+                &:hover {
+                    background-color: transparent;
+                    color: rgb(255, 170, 234);
+                    border: 2px solid rgb(255, 170, 234);
+                }
+            }
+
+            .siniestro {
+                background-color: #161616;
+                color: white;
+                border: 2px solid #161616;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #161616;
+                    border: 2px solid #161616;
+
+                }
+
+            }
+
+            .psiquico {
+                background-color: #ff03d1;
+                color: white;
+
+                border: 2px solid #ff03d1;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #ff03d1;
+                    border: 2px solid #ff03d1;
+
+                }
+
+            }
+
+            .lucha {
+                color: white;
+                background-color: #ff171f;
+                border: 2px solid #ff171f;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #ff171f;
+                    border: 2px solid #ff171f;
+
+                }
+            }
+
+            .fantasma {
+                color: white;
+                background-color: #1a2a4d;
+                border: #1a2a4d;
+
+                &:hover {
+                    background-color: transparent;
+                    color: #1a2a4d;
+                    border: #1a2a4d;
+
+                }
+            }
+
+            .hielo {
+                color: white;
+                background-color: #00f2ea;
+                border: 2px solid #00f2ea;
+                &:hover{
+                    background-color: transparent;
+                    color: #00f2ea;
+                    border: 2px solid #00f2ea;
+    
+                }
+            }
+
+            .acero {
+                color: white;
+                background-color: #003238;
+                border: 2px solid #003238;
+                &:hover {
+                    background-color: transparent;
+                    color: #003238;
+                    border: 2px solid #003238;
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,336 @@
+/**index */
+* {
+  max-width: 100vw;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #191919;
+  max-width: 100vw;
+}
+
+nav {
+  background-color: black;
+}
+nav ul {
+  list-style: none;
+  height: 10vh;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto;
+}
+nav ul li {
+  display: flex;
+  align-items: center;
+}
+nav ul li button {
+  color: white;
+  height: 80%;
+  background-color: transparent;
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+  transition: all 0.5s;
+}
+nav ul li button:hover {
+  border: goldenrod 2px solid;
+  border-radius: 4px;
+  color: goldenrod;
+  transition: all 0.5s;
+}
+
+.cartaPokemon {
+  display: grid;
+  background: black;
+  max-width: 80%;
+  width: auto;
+  height: auto;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(5, auto);
+  overflow: hidden;
+  grid-template-areas: "nombre nombre nombre nombre id" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen";
+}
+.cartaPokemon .nombrePokemon {
+  margin: 0 0 0 0;
+  font-size: small;
+  color: white;
+  grid-area: nombre;
+  display: block;
+  width: auto;
+  height: 100%;
+  text-align: center;
+}
+.cartaPokemon .idPokemon {
+  margin: 0 0 0 0;
+  font-size: small;
+  height: 100%;
+  grid-area: id;
+  color: white;
+  background-color: transparent;
+  display: block;
+  width: auto;
+  text-align: center;
+}
+.cartaPokemon img {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  grid-area: imagen;
+}
+
+.listaPokemons {
+  margin-top: 5vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  list-style: none;
+  gap: 5px;
+  row-gap: 40px;
+  grid-auto-rows: 120px;
+}
+
+.botones {
+  display: flex;
+  width: 100%;
+  margin: 5% 0;
+  align-items: center;
+}
+.botones button {
+  border-radius: 4px;
+  outline: none;
+  margin: auto 20%;
+  width: 10%;
+  border: 2px solid;
+  background: transparent;
+  color: white;
+}
+.botones .siguiente {
+  color: crimson;
+  border: crimson 2px solid;
+}
+.botones .anterior {
+  color: blue;
+  border: blue 2px solid;
+}
+
+#MenuTipo {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 3;
+  align-items: center;
+}
+#MenuTipo .menuTipoInterno {
+  z-index: 10;
+  border: gold 3px solid;
+  border-radius: 15px;
+  padding: 6%;
+  width: 35vw;
+  height: auto;
+  margin: 6% auto;
+  display: block;
+  background-color: black;
+}
+#MenuTipo .menuTipoInterno .contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#MenuTipo .menuTipoInterno button {
+  margin: 3px auto;
+  background: transparent;
+  border: none;
+  display: block;
+  width: 80%;
+  padding-bottom: 2px;
+  transition: 0.4s;
+  border-radius: 3%;
+}
+#MenuTipo .menuTipoInterno .electrico {
+  color: gray;
+  background-color: yellow;
+  border: 2px solid yellow;
+}
+#MenuTipo .menuTipoInterno .electrico:hover {
+  background-color: transparent;
+  color: yellow;
+  border: 2px solid yellow;
+}
+#MenuTipo .menuTipoInterno .fuego {
+  color: white;
+  border: 2px solid orange;
+  background-color: orange;
+}
+#MenuTipo .menuTipoInterno .fuego:hover {
+  background-color: transparent;
+  color: orange;
+  border: 2px solid orange;
+}
+#MenuTipo .menuTipoInterno .dragon {
+  color: white;
+  border: 2px solid #2153bf;
+  background-color: #2153bf;
+}
+#MenuTipo .menuTipoInterno .dragon:hover {
+  background-color: transparent;
+  color: #2153bf;
+  border: 2px solid #2153bf;
+}
+#MenuTipo .menuTipoInterno .agua {
+  color: white;
+  border: 2px solid blue;
+  background-color: blue;
+}
+#MenuTipo .menuTipoInterno .agua:hover {
+  background-color: transparent;
+  color: blue;
+  border: 2px solid blue;
+}
+#MenuTipo .menuTipoInterno .volador {
+  color: white;
+  background-color: deepskyblue;
+  border: 2px solid deepskyblue;
+}
+#MenuTipo .menuTipoInterno .volador:hover {
+  background-color: transparent;
+  color: deepskyblue;
+  border: 2px solid deepskyblue;
+}
+#MenuTipo .menuTipoInterno .planta {
+  color: white;
+  background-color: #0af775;
+  border: 2px solid #0af775;
+}
+#MenuTipo .menuTipoInterno .planta:hover {
+  background-color: transparent;
+  color: #0af775;
+  border: 2px solid #0af775;
+}
+#MenuTipo .menuTipoInterno .insecto {
+  color: white;
+  border: 2px solid #7dc902;
+  background-color: #7dc902;
+}
+#MenuTipo .menuTipoInterno .insecto:hover {
+  color: #7dc902;
+  border: 2px solid #7dc902;
+  background-color: transparent;
+}
+#MenuTipo .menuTipoInterno .normal {
+  color: white;
+  border: 2px solid gray;
+  background-color: gray;
+}
+#MenuTipo .menuTipoInterno .normal:hover {
+  background-color: transparent;
+  color: gray;
+  border: 2px solid gray;
+}
+#MenuTipo .menuTipoInterno .veneno {
+  background-color: #980af7;
+  color: white;
+  border: 2px solid #980af7;
+}
+#MenuTipo .menuTipoInterno .veneno:hover {
+  color: #980af7;
+  background-color: transparent;
+  border: 2px solid #980af7;
+}
+#MenuTipo .menuTipoInterno .tierra {
+  color: white;
+  background-color: #b3773b;
+  border: 2px solid #b3773b;
+}
+#MenuTipo .menuTipoInterno .tierra:hover {
+  background-color: transparent;
+  color: #b3773b;
+  border: 2px solid #b3773b;
+}
+#MenuTipo .menuTipoInterno .roca {
+  color: white;
+  background-color: #949370;
+  border: 2px solid #949370;
+}
+#MenuTipo .menuTipoInterno .roca:hover {
+  background-color: transparent;
+  color: #949370;
+  border: 2px solid #949370;
+}
+#MenuTipo .menuTipoInterno .hada {
+  background-color: #ffaaea;
+  color: white;
+  border: 2px solid #ffaaea;
+}
+#MenuTipo .menuTipoInterno .hada:hover {
+  background-color: transparent;
+  color: #ffaaea;
+  border: 2px solid #ffaaea;
+}
+#MenuTipo .menuTipoInterno .siniestro {
+  background-color: #161616;
+  color: white;
+  border: 2px solid #161616;
+}
+#MenuTipo .menuTipoInterno .siniestro:hover {
+  background-color: transparent;
+  color: #161616;
+  border: 2px solid #161616;
+}
+#MenuTipo .menuTipoInterno .psiquico {
+  background-color: #ff03d1;
+  color: white;
+  border: 2px solid #ff03d1;
+}
+#MenuTipo .menuTipoInterno .psiquico:hover {
+  background-color: transparent;
+  color: #ff03d1;
+  border: 2px solid #ff03d1;
+}
+#MenuTipo .menuTipoInterno .lucha {
+  color: white;
+  background-color: #ff171f;
+  border: 2px solid #ff171f;
+}
+#MenuTipo .menuTipoInterno .lucha:hover {
+  background-color: transparent;
+  color: #ff171f;
+  border: 2px solid #ff171f;
+}
+#MenuTipo .menuTipoInterno .fantasma {
+  color: white;
+  background-color: #1a2a4d;
+  border: #1a2a4d;
+}
+#MenuTipo .menuTipoInterno .fantasma:hover {
+  background-color: transparent;
+  color: #1a2a4d;
+  border: #1a2a4d;
+}
+#MenuTipo .menuTipoInterno .hielo {
+  color: white;
+  background-color: #00f2ea;
+  border: 2px solid #00f2ea;
+}
+#MenuTipo .menuTipoInterno .hielo:hover {
+  background-color: transparent;
+  color: #00f2ea;
+  border: 2px solid #00f2ea;
+}
+#MenuTipo .menuTipoInterno .acero {
+  color: white;
+  background-color: #003238;
+  border: 2px solid #003238;
+}
+#MenuTipo .menuTipoInterno .acero:hover {
+  background-color: transparent;
+  color: #003238;
+  border: 2px solid #003238;
+}
+
+/*# sourceMappingURL=styles.css.map */
