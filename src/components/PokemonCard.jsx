@@ -19,14 +19,24 @@ export const PokemonCard = withRouter((props) => {
             let response = await fetch(url);
 
             response = await response.json();
-            let { name, id, types, sprites, moves, abilities, height, weight } = response;
-            data = { name, id, types, sprites, abilities, moves, weight, height }
+            let { name, id, types, sprites } = response;
+            data = { name, id, types, sprites}
+            if(sessionStorage.length>500){
+                sessionStorage.clear()
+            }
+            
             sessionStorage.setItem(url, JSON.stringify(data));
+           
+           
+            
 
             return data
 
         } else {
+            
+            
             data = JSON.parse(sessionStorage.getItem(url));
+            
             return data;
         }
     }, [url]);
@@ -39,17 +49,14 @@ export const PokemonCard = withRouter((props) => {
             .then(
                 (data) => {
 
-                    let { name, id, types, sprites, abilities, moves, weight, height } = data;
+                    let { name, id, types, sprites} = data;
 
                     setpokemon({
                         "name": name,
                         "id": id,
                         "types": types,
                         "sprites": sprites,
-                        "abilities": abilities,
-                        "moves": moves,
-                        "weight": weight,
-                        "height": height
+                       
 
                     })
 

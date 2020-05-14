@@ -11,7 +11,7 @@ export const Pokemon = withRouter((props) => {
     const [tipo, setTipo] = useState([]);
     const [pokemon, setpokemon] = useState({ name: "", id: "", types: [], sprites: {}, abilities: [], moves: [], weight: "", height: "" });
     const [movimiento, setMovimiento] = useState([]);
-    let url = "https://pokeapi.co/api/v2/pokemon/" + id;
+    let url = "https://pokeapi.co/api/v2/pokemon/" + id+"/";
 
     let getPokemon = useCallback(async () => {
         let data;
@@ -23,12 +23,25 @@ export const Pokemon = withRouter((props) => {
             response = await response.json();
             let { name, id, types, sprites, weight, height, abilities, moves } = response;
             data = { name, id, types, sprites, weight, height, abilities, moves }
+            if(sessionStorage.length>500){
+                sessionStorage.clear()
+            }
+            
             sessionStorage.setItem(url, JSON.stringify(data));
 
             return data
 
         } else {
             data = JSON.parse(sessionStorage.getItem(url));
+            if(!(data.abilities || data.moves || data.weight ||  data.height )){
+                sessionStorage.removeItem(url);
+                let response = await fetch(url);
+                response = await response.json();
+                let { name, id, types, sprites, weight, height, abilities, moves } = response;
+                data = { name, id, types, sprites, weight, height, abilities, moves }
+                sessionStorage.setItem(url, JSON.stringify(data));
+
+            }
             return data;
         }
     }, [url]);
@@ -65,7 +78,7 @@ export const Pokemon = withRouter((props) => {
 
 
     const selectorImagen = () => {
-        if (props.shiny && pokemon.sprites.front_shiny) {
+        if (shiny && pokemon.sprites.front_shiny) {
             return (pokemon.sprites.front_shiny);
         } else if (pokemon.sprites.front_default != null) {
             return (pokemon.sprites.front_default);
@@ -113,13 +126,16 @@ export const Pokemon = withRouter((props) => {
 
         return listaHabilidades
     }
-
-
+    const toggleShiny = async () => {
+        setshiny(!shiny);
+           
+           
+       }
 
     return (
         <main>
             <article className="pokemon">
-                <h1 style={{ "backgroundColor": selectorTipo(pokemon.types) }} className={"nombrePokemon"}>{pokemon.name + " #" + pokemon.id}</h1>
+                <h1 style={{ "backgroundColor": selectorTipo(pokemon.types) }} className={"nombrePokemon"}>{pokemon.name + " #" + pokemon.id} <button onClick={toggleShiny}>shiny</button></h1>
 
 
 
