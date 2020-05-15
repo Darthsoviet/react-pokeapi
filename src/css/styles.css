@@ -4,15 +4,17 @@
   max-width: 100vw;
   margin: 0;
   box-sizing: border-box;
+  text-transform: capitalize;
 }
 
 body {
-  background-color: #191919;
+  background-color: #222222;
   max-width: 100vw;
+  min-height: 100vh;
 }
 
 nav {
-  background-color: black;
+  background-color: #191919;
 }
 nav ul {
   list-style: none;
@@ -36,6 +38,10 @@ nav ul li button {
   width: 100%;
   transition: all 0.5s;
 }
+nav ul li button:focus {
+  color: none;
+  background-color: blue;
+}
 nav ul li button:hover {
   border: goldenrod 2px solid;
   border-radius: 4px;
@@ -47,15 +53,20 @@ nav ul li button:hover {
   box-sizing: content-box;
   margin: 0 auto;
   display: grid;
-  background: black;
+  background: #191919;
   max-width: 90%;
   width: auto;
   height: auto;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(5, auto);
   overflow: hidden;
+  box-shadow: 4px 4px 7px black;
   cursor: pointer;
   grid-template-areas: "nombre nombre nombre nombre id" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen" "imagen imagen imagen imagen imagen";
+}
+.cartaPokemon:hover {
+  box-shadow: 7px 7px 7px black;
+  margin-bottom: 3%;
 }
 .cartaPokemon .nombrePokemon {
   margin: 0 0 0 0;
@@ -90,7 +101,8 @@ nav ul li button:hover {
 }
 
 .listaPokemons {
-  margin-top: 5vh;
+  padding: 0;
+  margin-top: 6%;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   list-style: none;
@@ -99,10 +111,15 @@ nav ul li button:hover {
   grid-auto-rows: 120px;
 }
 
+main {
+  display: block;
+  height: auto;
+}
+
 .botones {
   display: flex;
   width: 100%;
-  margin: 1% 0;
+  margin: 6% 0;
   align-items: center;
 }
 .botones button {
@@ -115,11 +132,13 @@ nav ul li button:hover {
   color: white;
 }
 .botones .siguiente {
-  color: crimson;
+  background-color: crimson;
+  color: white;
   border: crimson 2px solid;
 }
 .botones .anterior {
-  color: blue;
+  background-color: blue;
+  color: white;
   border: blue 2px solid;
 }
 .botones .true {
@@ -134,8 +153,9 @@ nav ul li button:hover {
 
 @media screen and (max-width: 780px) {
   .listaPokemons {
-    margin: 0;
-    margin-bottom: 14%;
+    box-sizing: content-box;
+    margin-bottom: 17%;
+    padding-bottom: 14%;
     grid-template-columns: 1fr 1fr;
     padding: 8%;
     overflow: scroll;
@@ -160,7 +180,6 @@ nav ul li button:hover {
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 3;
   align-items: center;
-  overflow: scroll;
 }
 #MenuTipo .menuTipoInterno {
   overflow: hidden;
@@ -373,6 +392,7 @@ nav ul li button:hover {
   #MenuTipo {
     width: 100vw;
     height: 100vh;
+    overflow: scroll;
   }
   #MenuTipo .menuTipoInterno {
     width: 80%;
@@ -386,8 +406,10 @@ nav ul li button:hover {
   background-color: #252525;
   border-radius: 5px;
   margin: 7% auto;
+  box-shadow: 8px 8px 8px black;
 }
 .pokemon * {
+  outline: none;
   text-transform: capitalize;
   list-style: none;
 }

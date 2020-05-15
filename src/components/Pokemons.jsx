@@ -71,7 +71,7 @@ export const Pokemons = (props) => {
             </ul>
             <div className="botones">
                 <button className="anterior" onClick={anteriorHandleOnClick} >Anterior</button>
-                <button style={{ margin: "0 auto" }} className={`${shiny}`} onClick={toggleShiny} name="shiny" id="shiny" >shiny</button>
+                <button style={{ margin: "0 auto" }} className={`${shiny}`} onClick={toggleShiny} name="shiny" id="shiny" >Shiny</button>
                 <button className="siguiente" onClick={siguienteHandleOnClick} >Siguiente</button>
 
             </div>

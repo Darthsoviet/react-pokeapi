@@ -1,24 +1,29 @@
 @mixin Pokemons {
 
     .listaPokemons{
-        margin-top: 5vh;
+    padding: 0;
+        margin-top: 6%;
         display: grid;
         grid-template-columns: repeat(10,1fr);
         list-style: none;
         gap: 5px;
         row-gap: 40px;
         grid-auto-rows: 120px;
+    
         
 
     }
     main{
+        
+        display: block;
+        height: auto;
         
     }
     .botones{
         
         display: flex;
         width: 100%;
-        margin: 1% 0;
+        margin: 6% 0;
         align-items: center;
 
         
@@ -32,12 +37,14 @@
             color: white;
         }
         .siguiente{
-            color:crimson;
+            background-color: crimson;
+            color:white;
             border: crimson 2px solid;
         }
 
         .anterior{
-            color:blue;
+            background-color: blue;
+            color:white;
             border: blue 2px solid;
         }
         .true{
@@ -52,8 +59,10 @@
     }
     @media screen and (max-width: 780px){
         .listaPokemons{
-            margin: 0;
-            margin-bottom: 14%;
+
+            box-sizing: content-box;
+            margin-bottom: 17%;
+            padding-bottom: 14%;
             grid-template-columns: 1fr 1fr;
             padding: 8%;
             overflow: scroll;

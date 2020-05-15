@@ -4,13 +4,14 @@
         box-sizing: content-box;
         margin: 0 auto;
         display: grid;
-        background: black;
+        background: #191919;
         max-width: 90%;
         width: auto;
         height: auto;
         grid-template-rows: repeat(6,1fr);
         grid-template-columns: repeat(5,auto);
         overflow: hidden;
+        box-shadow: 4px 4px 7px black;
         cursor:pointer;
         grid-template-areas:
                      "nombre nombre nombre nombre id"
@@ -19,6 +20,11 @@
                     "imagen imagen imagen imagen imagen"
                     "imagen imagen imagen imagen imagen"
                     "imagen imagen imagen imagen imagen";
+        &:hover{
+            box-shadow: 7px 7px 7px black;
+            margin-bottom: 3%;
+
+        }
 
         .nombrePokemon{
             margin: 0 0 0 0;

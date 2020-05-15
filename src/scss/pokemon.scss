@@ -5,8 +5,10 @@
         background-color: #252525;
         border-radius: 5px;
         margin: 7% auto;
+        box-shadow: 8px 8px 8px  black;
 
         * {
+            outline: none;
             text-transform: capitalize;
             list-style: none;
         }
