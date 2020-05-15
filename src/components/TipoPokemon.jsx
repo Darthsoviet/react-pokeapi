@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { PokemonCard } from "./PokemonCard"
+import { PokemonCard } from "./PokemonCard";
+import { withRouter } from 'react-router-dom';
 
-export const TipoPokemon = (props) => {
+export const TipoPokemon = withRouter((props) => {
     
     let url="https://pokeapi.co/api/v2/type/";
     let tipo= props.match.params.tipo;
@@ -25,7 +26,6 @@ export const TipoPokemon = (props) => {
        }
 
     const pintarLista =useCallback((data)=> {
-            console.log(data.pokemon);
             
             let temp = data.pokemon.map((elemento, i) => {
                 return <PokemonCard url={elemento.pokemon.url} shiny={shiny} key={i} />
@@ -55,4 +55,4 @@ export const TipoPokemon = (props) => {
         </>
 
     );
-}
+});

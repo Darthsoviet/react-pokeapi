@@ -1,10 +1,10 @@
 import React, { useEffect, useState,useCallback } from 'react';
 import { PokemonCard } from "./PokemonCard"
 
-export const Pokemons = () => {
+export const Pokemons = (props) => {
 
-
-    const [url, seturl] = useState("https://pokeapi.co/api/v2/pokemon");
+    const {setultimo,ultimo} =props;
+    const [url, seturl] = useState(ultimo);
     const [lista, setlista] = useState([]);
     const [siguiente, setsiguiente] = useState("");
     const [anterior, setanterior] = useState("");
@@ -26,7 +26,7 @@ export const Pokemons = () => {
 
     const siguienteHandleOnClick = () => {
         seturl(siguiente);
-        getPokemons(siguiente).then(pintarLista);
+        setultimo(siguiente);
 
 
 
@@ -34,7 +34,7 @@ export const Pokemons = () => {
 
     const anteriorHandleOnClick = () => {
         seturl(anterior);
-        getPokemons(anterior).then(pintarLista);
+        setultimo(anterior);
 
     }
 
@@ -55,6 +55,7 @@ export const Pokemons = () => {
     },[shiny]);
 
     useEffect(() => {
+
         getPokemons(url).then(pintarLista);
 
     }, [setlista, url,pintarLista]);

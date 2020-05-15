@@ -361,12 +361,50 @@ nav ul li button:hover {
   }
 }
 .pokemon {
-  width: 75%;
+  width: 50%;
   background-color: #252525;
   border-radius: 5px;
   margin: 7% auto;
 }
+.pokemon * {
+  text-transform: capitalize;
+}
+.pokemon .opciones {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+.pokemon .opciones button {
+  box-sizing: initial;
+  outline: none;
+}
+.pokemon .opciones .atras {
+  border: 3px solid crimson;
+  background-color: crimson;
+  color: white;
+}
+.pokemon .opciones .atras:hover {
+  box-shadow: 0 3px 3px crimson;
+}
+.pokemon .opciones .adelante {
+  border: 3px solid #4BB543;
+  background-color: #4BB543;
+  color: white;
+}
+.pokemon .opciones .adelante:hover {
+  box-shadow: 0 3px 3px #4BB543;
+}
+.pokemon .opciones .shiny {
+  border: 3px solid goldenrod;
+  background-color: goldenrod;
+  color: white;
+}
+.pokemon .opciones .shiny:hover {
+  box-shadow: 0 3px 3px goldenrod;
+}
 .pokemon h1 {
+  margin-bottom: 0;
   text-align: center;
   text-transform: capitalize;
 }
@@ -384,11 +422,12 @@ nav ul li button:hover {
   max-height: 100%;
 }
 .pokemon .contenidoPokemon .descripcion {
-  margin-bottom: 5vh;
+  margin-bottom: 1vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 .pokemon .contenidoPokemon .descripcion span {
+  font-size: small;
   text-align: center;
   margin: auto 0;
   color: white;
@@ -397,16 +436,19 @@ nav ul li button:hover {
 .pokemon .contenidoPokemon .descripcion ul {
   display: block;
 }
-.pokemon .contenidoPokemon div h2, .pokemon .contenidoPokemon div h3, .pokemon .contenidoPokemon div h4 {
+.pokemon .contenidoPokemon div h2,
+.pokemon .contenidoPokemon div h3,
+.pokemon .contenidoPokemon div h4 {
   text-align: center;
   color: white;
+  font-size: small;
 }
 .pokemon .contenidoPokemon div ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 .pokemon .contenidoPokemon div ul li {
-  font-size: smaller;
+  font-size: 10px;
   color: white;
 }
 

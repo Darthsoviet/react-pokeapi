@@ -1,65 +1,129 @@
 @mixin Pokemon {
-    .pokemon{
-        width: 75%;
+    .pokemon {
+
+        width: 50%;
         background-color: #252525;
         border-radius: 5px;
-        margin: 7% auto ;
-        h1{
+        margin: 7% auto;
+
+        * {
+            text-transform: capitalize;
+        }
+
+        .opciones {
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            width: 100%;
+
+            button {
+                box-sizing: initial;
+                outline: none;
+            }
+
+            .atras {
+
+                border: 3px solid crimson;
+                background-color: crimson;
+                color: white;
+                &:hover{
+                    box-shadow: 0 3px 3px crimson;
+                }
+
+            }
+            .adelante {
+
+                border: 3px solid #4BB543;
+                background-color: #4BB543;;
+                color: white;
+                &:hover{
+                    box-shadow: 0 3px 3px #4BB543;;
+                }
+
+            }
+
+
+            .shiny {
+                border: 3px solid goldenrod;
+                background-color: goldenrod;
+                color: white;
+                &:hover{
+                    box-shadow: 0 3px 3px goldenrod;
+                }
+
+            }
+        }
+
+        h1 {
+            margin-bottom: 0;
             text-align: center;
             text-transform: capitalize;
         }
-        .contenidoPokemon{
+
+        .contenidoPokemon {
             display: grid;
             width: 100%;
             height: auto;
             grid-template-columns: 1fr;
             color: white;
-            text-align: center;            
-            .imagenPokemon{
-                margin: 0 auto ;
-                max-width: 100%;
-                max-height:100% ;
+            text-align: center;
 
-    
-                
+            .imagenPokemon {
+                margin: 0 auto;
+                max-width: 100%;
+                max-height: 100%;
+
+
+
             }
-            .descripcion{
-                margin-bottom: 5vh;;
+
+            .descripcion {
+                margin-bottom: 1vh;
+                
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
-                span{
+
+                span {
+                    font-size: small;
+
                     text-align: center;
                     margin: auto 0;
                     color: white;
                     display: block;
                 }
-                ul{
+
+                ul {
                     display: block;
-                    
+
                 }
-                
+
             }
-            div{
-               
-                h2,h3,h4{
+
+            div {
+
+                h2,
+                h3,
+                h4 {
                     text-align: center;
                     color: white;
+                    font-size: small;
                 }
-                
-                ul{
+
+                ul {
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
-                    li{
-                        font-size: smaller;
+
+                    li {
+                        font-size: 10px;
                         color: white;
                     }
                 }
-                
+
             }
         }
-       
-    }
-    
 
-    
+    }
+
+
+
 }
