@@ -5,7 +5,7 @@
         right: 0;
         width: 0%;
         height: 0%;
-       
+
         overflow: hidden;
         background-color: rgba(0, 0, 0, 0.8);
         z-index: 3;
@@ -22,10 +22,12 @@
             margin: 6% auto;
             display: block;
             background-color: black;
-            .contenedor{
+
+            .contenedor {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
             }
+
             button {
                 margin: 3px auto;
                 background: transparent;
@@ -255,11 +257,12 @@
                 color: white;
                 background-color: #00f2ea;
                 border: 2px solid #00f2ea;
-                &:hover{
+
+                &:hover {
                     background-color: transparent;
                     color: #00f2ea;
                     border: 2px solid #00f2ea;
-    
+
                 }
             }
 
@@ -267,6 +270,7 @@
                 color: white;
                 background-color: #003238;
                 border: 2px solid #003238;
+
                 &:hover {
                     background-color: transparent;
                     color: #003238;
@@ -275,5 +279,17 @@
             }
         }
 
+    }
+
+    @media screen and (max-width: 780px) {
+        #MenuTipo{
+            .menuTipoInterno{
+                width: 80%;
+                .contenedor {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+        }
+        
     }
 }

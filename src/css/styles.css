@@ -129,6 +129,11 @@ nav ul li button:hover {
   color: goldenrod;
 }
 
+@media screen and (max-width: 780px) {
+  .listaPokemons {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 #MenuTipo {
   transition: 1s all;
   position: fixed;
@@ -347,6 +352,14 @@ nav ul li button:hover {
   border: 2px solid #003238;
 }
 
+@media screen and (max-width: 780px) {
+  #MenuTipo .menuTipoInterno {
+    width: 80%;
+  }
+  #MenuTipo .menuTipoInterno .contenedor {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 .pokemon {
   width: 75%;
   background-color: #252525;

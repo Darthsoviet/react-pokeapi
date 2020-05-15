@@ -50,4 +50,9 @@
             color: goldenrod;
         }
     }
+    @media screen and (max-width: 780px){
+        .listaPokemons{
+            grid-template-columns: 1fr 1fr;
+        }
+    }
 }
