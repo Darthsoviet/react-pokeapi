@@ -26,7 +26,7 @@
             border-radius: 4px;
             outline: none;
             margin: auto 20%;
-            width: 10%;
+            width: 50%;
             border: 2px solid;
             background: transparent;
             color: white;
@@ -53,6 +53,7 @@
     @media screen and (max-width: 780px){
         .listaPokemons{
             grid-template-columns: 1fr 1fr;
+           
         }
     }
 }

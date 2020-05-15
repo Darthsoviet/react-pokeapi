@@ -7,7 +7,7 @@ export const Pokemon = withRouter((props) => {
 
     const {history} = props;
     let { id } = props.match.params;
-
+    const {dataList} =props;
     const [shiny, setshiny] = useState(false);
     const [tipo, setTipo] = useState([]);
     const [pokemon, setpokemon] = useState({ name: "", id: "", types: [], sprites: {}, abilities: [], moves: [], weight: "", height: "" });
@@ -20,26 +20,23 @@ export const Pokemon = withRouter((props) => {
         useCallback(async (url, signal) => {
             let data;
 
-            if (!sessionStorage.getItem(url)) {
-
+            if (!dataList.get(url)) {
 
                 let response = await fetch(url, { signal })
                 response = await response.json();
                 let { name, id, types, sprites, weight, height, abilities, moves } = response;
 
                 data = { name, id, types, sprites, weight, height, abilities, moves }
-                if (sessionStorage.length > 300) {
-                    sessionStorage.clear();
+                if (dataList.size > 200) {
+                    dataList.clear();
                 }
 
-                sessionStorage.setItem(url, JSON.stringify(data));
+                dataList.set(url, JSON.stringify(data));
 
                 return data
 
-
-
             } else {
-                data = JSON.parse(sessionStorage.getItem(url));
+                data = JSON.parse(dataList.get(url));
 
                 if (!(data.abilities || data.moves || data.weight || data.height)) {
 
@@ -47,12 +44,12 @@ export const Pokemon = withRouter((props) => {
                     response = await response.json();
                     let { name, id, types, sprites, weight, height, abilities, moves } = response;
                     data = { name, id, types, sprites, weight, height, abilities, moves }
-                    sessionStorage.setItem(url, JSON.stringify(data));
+                    dataList.set(url, JSON.stringify(data));
 
                 }
                 return data;
             }
-        }, []);
+        }, [dataList]);
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -211,15 +208,7 @@ export const Pokemon = withRouter((props) => {
             </article>
         </main>
 
-
-
     );
-
-
-
-
-
-
 
 });
 

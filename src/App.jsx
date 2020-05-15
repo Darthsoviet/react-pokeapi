@@ -9,8 +9,11 @@ import {TipoPokemon} from "./components/TipoPokemon";
 import {Pokemon} from "./components/Pokemon";
 
 
+
+
 function App() {
   const [ultimo, setultimo] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [dataList,setDataList] = useState(new Map())
   return (
     <>
      <MenuTipo />
@@ -18,9 +21,9 @@ function App() {
       
       <Switch>
         <Route exact path="/" render={()=><Inicio/>}  />
-        <Route exact path="/pokemons" render={ ()=> <Pokemons setultimo={setultimo} ultimo={ultimo}/>} />
-        <Route exact path="/pokemons/tipo/:tipo"  render={()=><TipoPokemon/>}/>
-        <Route exact path="/pokemon/:id" render={()=><Pokemon/>}/>
+        <Route exact path="/pokemons" render={ ()=> <Pokemons dataList={dataList} setDataList={setDataList} setultimo={setultimo} ultimo={ultimo}/>} />
+        <Route exact path="/pokemons/tipo/:tipo"  render={()=><TipoPokemon dataList={dataList}  />}/>
+        <Route exact path="/pokemon/:id" render={()=><Pokemon dataList={dataList}/>}/>
 
       </Switch>
 

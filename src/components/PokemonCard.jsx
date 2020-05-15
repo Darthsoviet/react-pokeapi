@@ -5,6 +5,7 @@ import { selectorTipo } from "../js/selectorTipo";
 
 
 export const PokemonCard = withRouter((props) => {
+    const {dataList} =props;
     const { url } = props;
     const { history } = props;
     const [pokemon, setpokemon] = useState({ name: "", id: "", types: [], sprites: {}, abilities: [], moves: [], weight: "", height: "" });
@@ -12,20 +13,24 @@ export const PokemonCard = withRouter((props) => {
 
 
     let getPokemon = useCallback(async () => {
+        
         let data;
 
-        if (!sessionStorage.getItem(url)) {
+        if (!dataList.get(url)) {
 
             let response = await fetch(url);
 
             response = await response.json();
             let { name, id, types, sprites } = response;
             data = { name, id, types, sprites}
-            if(sessionStorage.length>500){
-                sessionStorage.clear()
+
+            if(dataList.size>200){
+
+               
+             dataList.clear();
             }
             
-            sessionStorage.setItem(url, JSON.stringify(data));
+            dataList.set(url, JSON.stringify(data));
            
            
             
@@ -35,11 +40,11 @@ export const PokemonCard = withRouter((props) => {
         } else {
             
             
-            data = JSON.parse(sessionStorage.getItem(url));
+            data = JSON.parse(dataList.get(url));
             
             return data;
         }
-    }, [url]);
+    }, [url,dataList]);
 
 
     useEffect(() => {
@@ -61,9 +66,11 @@ export const PokemonCard = withRouter((props) => {
                     })
 
                 });
-
+               return ()=>{
+                   
+                }
     },
-        [setpokemon, url, getPokemon]);
+        [setpokemon, url, getPokemon,dataList]);
 
 
     const irPokemon = () => {

@@ -1,64 +1,69 @@
-import React, { useEffect, useState,useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { PokemonCard } from "./PokemonCard"
 
 export const Pokemons = (props) => {
 
-    const {setultimo,ultimo} =props;
+    const { setultimo, ultimo } = props;
+    const { dataList,setDataList } = props;
     const [url, seturl] = useState(ultimo);
     const [lista, setlista] = useState([]);
     const [siguiente, setsiguiente] = useState("");
     const [anterior, setanterior] = useState("");
     const [shiny, setshiny] = useState(false);
 
+
+
     const getPokemons = async (url) => {
         let response = await fetch(url, { method: "GET" });
         response = await response.json();
         return response;
-
-
-
     }
+
+
+
     const toggleShiny = async () => {
-     setshiny(!shiny);
-        
-        
+        setshiny(!shiny);
+
+
     }
+
 
     const siguienteHandleOnClick = () => {
-        seturl(siguiente);
-        setultimo(siguiente);
-
-
+        if (siguiente) {
+            seturl(siguiente);
+            setultimo(siguiente);
+        }
 
     }
+
+
 
     const anteriorHandleOnClick = () => {
-        seturl(anterior);
-        setultimo(anterior);
+        if (anterior) {
+            seturl(anterior);
+            setultimo(anterior);
+        }
 
     }
 
 
-    
+
     const pintarLista = useCallback((data) => {
         setsiguiente(data.next);
         setanterior(data.previous);
         let temp = data.results.map((elemento, i) => {
-
-
-
-            return <PokemonCard url={elemento.url} shiny={shiny} key={i} />
+            return <PokemonCard dataList={dataList} setDataList={setDataList} url={elemento.url} shiny={shiny} key={i} />
         });
         setlista(temp);
-
-
-    },[shiny]);
+    },
+        [shiny, dataList]);
 
     useEffect(() => {
 
         getPokemons(url).then(pintarLista);
 
-    }, [setlista, url,pintarLista]);
+    },
+        [setlista, url, pintarLista]);
     return (
         <main>
             <ul className={"listaPokemons"}>
@@ -66,7 +71,7 @@ export const Pokemons = (props) => {
             </ul>
             <div className="botones">
                 <button className="anterior" onClick={anteriorHandleOnClick} >Anterior</button>
-                <button style={{margin:"0 auto"}} className={`${shiny}`}  onClick={toggleShiny} name="shiny" id="shiny" >shiny</button>
+                <button style={{ margin: "0 auto" }} className={`${shiny}`} onClick={toggleShiny} name="shiny" id="shiny" >shiny</button>
                 <button className="siguiente" onClick={siguienteHandleOnClick} >Siguiente</button>
 
             </div>

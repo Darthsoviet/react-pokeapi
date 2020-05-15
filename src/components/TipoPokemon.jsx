@@ -8,6 +8,7 @@ export const TipoPokemon = withRouter((props) => {
     let tipo= props.match.params.tipo;
     const [lista, setlista] = useState([]);
     const [shiny, setshiny] = useState(false);
+    const {dataList} = props;
 
     const getPokemons = async (url) => {
         let response = await fetch(url, { method: "GET" });
@@ -15,30 +16,30 @@ export const TipoPokemon = withRouter((props) => {
         
         return response;
 
-
-
     }
 
     const toggleShiny = async () => {
         setshiny(!shiny);
-           
-           
+        
        }
 
     const pintarLista =useCallback((data)=> {
             
             let temp = data.pokemon.map((elemento, i) => {
-                return <PokemonCard url={elemento.pokemon.url} shiny={shiny} key={i} />
+                return <PokemonCard dataList={dataList} url={elemento.pokemon.url} shiny={shiny} key={i} />
             });
 
             setlista(temp);
+    },[shiny,dataList]);
 
-    },[shiny]);
+
 
     useEffect(() => {
         getPokemons(url+tipo).then(pintarLista);
+    }, 
+    [setlista,url,tipo,pintarLista]);
 
-    }, [setlista,url,tipo,pintarLista]);
+    
     return (
         <>
         <main>
