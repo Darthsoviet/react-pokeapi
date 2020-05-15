@@ -18,8 +18,8 @@ export const Nav=withRouter( (props)=>{
     }
     const mostrarMenuTipo=()=>{
        let menuTipo=document.getElementById("MenuTipo");
-        menuTipo.style.width="100%";
-        menuTipo.style.height="100%";
+        menuTipo.style.width="100vw";
+        menuTipo.style.height="100vh";
         
 
         

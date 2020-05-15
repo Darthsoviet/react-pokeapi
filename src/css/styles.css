@@ -20,6 +20,7 @@ nav ul {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: auto;
+  margin: 0;
 }
 nav ul li {
   display: flex;
@@ -43,9 +44,11 @@ nav ul li button:hover {
 }
 
 .cartaPokemon {
+  box-sizing: content-box;
+  margin: 0 auto;
   display: grid;
   background: black;
-  max-width: 80%;
+  max-width: 90%;
   width: auto;
   height: auto;
   grid-template-rows: repeat(6, 1fr);
@@ -99,7 +102,7 @@ nav ul li button:hover {
 .botones {
   display: flex;
   width: 100%;
-  margin: 5% 0;
+  margin: 1% 0;
   align-items: center;
 }
 .botones button {
@@ -131,7 +134,20 @@ nav ul li button:hover {
 
 @media screen and (max-width: 780px) {
   .listaPokemons {
+    margin: 0;
+    margin-bottom: 14%;
     grid-template-columns: 1fr 1fr;
+    padding: 8%;
+    overflow: scroll;
+    max-height: 90vh;
+  }
+
+  .botones {
+    position: fixed;
+    bottom: 1px;
+  }
+  .botones button {
+    margin: auto 0;
   }
 }
 #MenuTipo {
@@ -144,6 +160,7 @@ nav ul li button:hover {
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 3;
   align-items: center;
+  overflow: scroll;
 }
 #MenuTipo .menuTipoInterno {
   overflow: hidden;
@@ -353,6 +370,10 @@ nav ul li button:hover {
 }
 
 @media screen and (max-width: 780px) {
+  #MenuTipo {
+    width: 100vw;
+    height: 100vh;
+  }
   #MenuTipo .menuTipoInterno {
     width: 80%;
   }
@@ -368,6 +389,7 @@ nav ul li button:hover {
 }
 .pokemon * {
   text-transform: capitalize;
+  list-style: none;
 }
 .pokemon .opciones {
   padding: 0;
@@ -450,6 +472,13 @@ nav ul li button:hover {
 .pokemon .contenidoPokemon div ul li {
   font-size: 10px;
   color: white;
+}
+
+@media screen and (max-width: 780px) {
+  .pokemon {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

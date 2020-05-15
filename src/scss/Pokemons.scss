@@ -18,7 +18,7 @@
         
         display: flex;
         width: 100%;
-        margin: 5% 0;
+        margin: 1% 0;
         align-items: center;
 
         
@@ -52,8 +52,23 @@
     }
     @media screen and (max-width: 780px){
         .listaPokemons{
+            margin: 0;
+            margin-bottom: 14%;
             grid-template-columns: 1fr 1fr;
+            padding: 8%;
+            overflow: scroll;
+            max-height: 90vh;
            
         }
+       .botones{
+        position: fixed;
+        bottom: 1px;
+        button{
+           
+            margin: auto 0;
+
+
+        }
+       } 
     }
 }

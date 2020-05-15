@@ -10,8 +10,10 @@
         background-color: rgba(0, 0, 0, 0.8);
         z-index: 3;
         align-items: center;
+        overflow: scroll;
 
         .menuTipoInterno {
+            
             overflow: hidden;
             z-index: 10;
             border: gold 3px solid;
@@ -283,6 +285,8 @@
 
     @media screen and (max-width: 780px) {
         #MenuTipo{
+            width: 100vw;
+            height: 100vh;
             .menuTipoInterno{
                 width: 80%;
                 .contenedor {

@@ -1,9 +1,11 @@
 @mixin PokemonCard {
 
     .cartaPokemon{
+        box-sizing: content-box;
+        margin: 0 auto;
         display: grid;
         background: black;
-        max-width: 80%;
+        max-width: 90%;
         width: auto;
         height: auto;
         grid-template-rows: repeat(6,1fr);

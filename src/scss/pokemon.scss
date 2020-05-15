@@ -8,6 +8,7 @@
 
         * {
             text-transform: capitalize;
+            list-style: none;
         }
 
         .opciones {
@@ -122,6 +123,14 @@
             }
         }
 
+    }
+    @media screen and (max-width: 780px){
+        
+            
+        
+       .pokemon{ width: 100%;
+        margin: 0;
+       }
     }
 
 
