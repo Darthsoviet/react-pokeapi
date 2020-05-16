@@ -70,8 +70,10 @@
            
         }
        .botones{
+        height: min-content;
+        margin: 0;
         position: fixed;
-        bottom: 1px;
+        
         button{
            
             margin: auto 0;
