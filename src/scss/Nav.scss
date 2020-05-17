@@ -42,4 +42,54 @@
         }
 
     }
+    @media screen and(max-width:750px){
+        nav {
+            background-color: #191919;
+            *{
+                font-size: 12px;
+            }
+           
+    
+            ul {
+                list-style: none;
+                height: 100%;
+                display: grid;
+                grid-auto-flow: column;
+                grid-template-columns: auto;
+                margin: 0;
+    
+                li { 
+                    display: flex;
+                    align-items: center;
+                    button {
+                        &:focus{
+                            color: none;
+                            
+                            background-color: blue;
+                        }
+                        color: white;
+                        height: 80%;
+                        background-color: transparent;
+                        display: block;
+                        border: none;
+                        outline: none;
+                        width: 100%;
+                        transition: all .5s;
+    
+                        &:hover {
+                            border: goldenrod 2px solid;
+                            border-radius: 4px;
+                            color: goldenrod;
+                            transition: all .5s;
+    
+                        }
+                    }
+    
+                }
+            }
+    
+        }
+
+        
+    }
 }

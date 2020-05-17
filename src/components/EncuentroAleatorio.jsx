@@ -48,7 +48,7 @@ export const EncuentroAleatorio = (props) => {
 
     }
     const positionChangeY=()=>{
-        let aux = Math.random()*90;
+        let aux = Math.abs((Math.random()*100)-20);
         let poken = document.getElementById("poke");
         
         if(poken){

@@ -7,7 +7,6 @@
 }
 
 body {
-  overflow: hidden;
   display: block;
   background-color: #222222;
   max-width: 100vw;
@@ -16,7 +15,7 @@ body {
 body #root {
   max-height: 100%;
   display: grid;
-  grid-template-rows: 10vh max(90vh);
+  grid-template-rows: 10vh 90vh;
 }
 
 nav {
@@ -55,6 +54,46 @@ nav ul li button:hover {
   transition: all 0.5s;
 }
 
+@media screen and (max-width: 750px) {
+  nav {
+    background-color: #191919;
+  }
+  nav * {
+    font-size: 12px;
+  }
+  nav ul {
+    list-style: none;
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto;
+    margin: 0;
+  }
+  nav ul li {
+    display: flex;
+    align-items: center;
+  }
+  nav ul li button {
+    color: white;
+    height: 80%;
+    background-color: transparent;
+    display: block;
+    border: none;
+    outline: none;
+    width: 100%;
+    transition: all 0.5s;
+  }
+  nav ul li button:focus {
+    color: none;
+    background-color: blue;
+  }
+  nav ul li button:hover {
+    border: goldenrod 2px solid;
+    border-radius: 4px;
+    color: goldenrod;
+    transition: all 0.5s;
+  }
+}
 .cartaPokemon {
   box-sizing: content-box;
   margin: 0 auto;
