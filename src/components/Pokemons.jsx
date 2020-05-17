@@ -56,7 +56,7 @@ export const Pokemons = (props) => {
         });
         setlista(temp);
     },
-        [shiny, dataList]);
+        [shiny, dataList,setDataList]);
 
     useEffect(() => {
 

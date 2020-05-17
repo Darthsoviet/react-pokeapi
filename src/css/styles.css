@@ -3,14 +3,20 @@
   transition: 0.6s all;
   max-width: 100vw;
   margin: 0;
-  box-sizing: border-box;
   text-transform: capitalize;
 }
 
 body {
+  overflow: hidden;
+  display: block;
   background-color: #222222;
   max-width: 100vw;
   min-height: 100vh;
+}
+body #root {
+  max-height: 100%;
+  display: grid;
+  grid-template-rows: 10vh max(90vh);
 }
 
 nav {
@@ -18,7 +24,7 @@ nav {
 }
 nav ul {
   list-style: none;
-  height: 10vh;
+  height: 100%;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: auto;
@@ -54,7 +60,8 @@ nav ul li button:hover {
   margin: 0 auto;
   display: grid;
   background: #191919;
-  max-width: 90%;
+  max-width: 96px;
+  max-height: 120px;
   width: auto;
   height: auto;
   grid-template-rows: repeat(6, 1fr);
@@ -95,8 +102,6 @@ nav ul li button:hover {
   margin-right: auto;
   height: auto;
   width: auto;
-  max-width: 100%;
-  max-height: 100%;
   grid-area: imagen;
 }
 
@@ -501,6 +506,49 @@ main {
   .pokemon {
     width: 100%;
     margin: 0;
+  }
+}
+.escenario {
+  display: block;
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  background: no-repeat url("https://i.pinimg.com/474x/df/4e/8b/df4e8ba28f912bf9cdf9fa0dfc196411--wallpaper-pack-beach-wallpaper.jpg");
+  background-size: contain;
+  background-repeat: repeat-x;
+  background-attachment: local;
+}
+.escenario .interno {
+  display: block;
+  width: 100%;
+  height: 50%;
+}
+.escenario .interno .contenedor {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+}
+
+@media screen and (max-width: 750px) {
+  .escenario {
+    display: block;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    background: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2fb2821a-1406-4a1d-9b04-6668f278e944/d843okx-eb13e8e4-0fa4-4fa9-968a-e0f36ff168de.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMmZiMjgyMWEtMTQwNi00YTFkLTliMDQtNjY2OGYyNzhlOTQ0XC9kODQzb2t4LWViMTNlOGU0LTBmYTQtNGZhOS05NjhhLWUwZjM2ZmYxNjhkZS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.bhj0Qs9G9h8on8c0mY3t31JfbxhhtPT09e-I3RmEQ1I");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: local;
+  }
+  .escenario .interno {
+    display: block;
+    width: 100%;
+    height: 50%;
+  }
+  .escenario .interno .contenedor {
+    position: absolute;
+    top: 50%;
+    right: 50%;
   }
 }
 

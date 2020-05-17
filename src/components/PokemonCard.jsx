@@ -12,13 +12,13 @@ export const PokemonCard = withRouter((props) => {
 
 
 
-    let getPokemon = useCallback(async () => {
+    let getPokemon = useCallback(async (signal) => {
         
         let data;
 
         if (!dataList.get(url)) {
 
-            let response = await fetch(url);
+            let response = await fetch(url,{signal});
 
             response = await response.json();
             let { name, id, types, sprites } = response;
@@ -48,9 +48,11 @@ export const PokemonCard = withRouter((props) => {
 
 
     useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
 
 
-        getPokemon()
+        getPokemon(signal)
             .then(
                 (data) => {
 
@@ -66,9 +68,7 @@ export const PokemonCard = withRouter((props) => {
                     })
 
                 });
-               return ()=>{
-                   
-                }
+              
     },
         [setpokemon, url, getPokemon,dataList]);
 
@@ -81,8 +81,8 @@ export const PokemonCard = withRouter((props) => {
     const selectorImagen = () => {
         if (props.shiny && pokemon.sprites.front_shiny) {
             return (pokemon.sprites.front_shiny);
-        } else if (pokemon.sprites.front_default != null) {
-            return (pokemon.sprites.front_default);
+         } else if (pokemon.sprites.front_default) {
+             return (pokemon.sprites.front_default);
         }
         else {
             return (pokeball);

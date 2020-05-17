@@ -19,11 +19,11 @@ export const Nav=withRouter( (props)=>{
     const mostrarMenuTipo=()=>{
        let menuTipo=document.getElementById("MenuTipo");
         menuTipo.style.width="100vw";
-        menuTipo.style.height="100vh";
-        
+        menuTipo.style.height="100vh"; 
 
-        
-
+    }
+    const irEncuentroAleatorio = ()=>{
+        history.push("/encuentroAleatorio");
     }
     
     return(
@@ -33,6 +33,9 @@ export const Nav=withRouter( (props)=>{
                 
                 <li>
                     <button onClick={irInicio}>Inicio</button>
+                </li>
+                <li>
+                    <button onClick={irEncuentroAleatorio}>Encuetro Aleatorio</button>
                 </li>
                 <li>
                     <button onClick={irPokemons}>ver Todos</button>

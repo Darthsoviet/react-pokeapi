@@ -4,28 +4,41 @@
 @import "Pokemons.scss";
 @import "MenuTipo.scss";
 @import "Pokemon.scss";
+@import "EncuentroAleatorio.scss";
 
 
 
 * {
     transition: .6s all;
+    
     max-width: 100vw;
     margin: 0;
-    box-sizing: border-box;
     text-transform: capitalize;
     
 }
 
 body {
+    overflow: hidden;
+
+    display: block;
     background-color: #222222;
     max-width: 100vw;
     min-height: 100vh;
-}
+    #root{
+        max-height: 100%;
+        display: grid;
+        grid-template-rows: 10vh max(90vh);
 
+
+    }
+    
+    
+}
 
 @include Nav;
 @include PokemonCard;
 @include Pokemons;
 @include MenuTipo;
 @include Pokemon;
+@include EncuentroAleatorio;
 
