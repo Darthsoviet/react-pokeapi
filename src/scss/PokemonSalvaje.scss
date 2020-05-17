@@ -4,5 +4,25 @@
         max-height: 92px;
     }
 
-    
+ .contenedor-barra{
+
+     display: flex;
+     position: relative;
+     width: 100px;
+     height: 10px;
+     border: 1px solid black;
+     overflow: hidden;
+     border-radius: 20px;
+     
+     .barra{
+        
+         transition: all 2s;
+         z-index: 2;
+         position: absolute;
+         width: 100%;
+         height: 10px;
+         display: block;
+         background-color: blue;
+     }
+ }   
 }

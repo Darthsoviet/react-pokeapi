@@ -23,7 +23,7 @@ export const EncuentroAleatorio = withRouter((props) => {
 
         let numeroPokedex = Math.random() * 807;
         let suerteShiny = Math.random() * 100;
-        if (suerteShiny <= 5) {
+        if (suerteShiny <= 4) {
             setShiny(true);
         }
         let pokedex = Math.round(numeroPokedex);
@@ -57,13 +57,7 @@ export const EncuentroAleatorio = withRouter((props) => {
         }
     }
 
-    const colorShiny = () => {
-        if (shiny) {
-            return " 2px solid gold";
-        } else {
-            return "none";
-        }
-    }
+    
 
     const positionChangeX = () => {
         let aux = Math.random() * 80;
@@ -141,17 +135,18 @@ export const EncuentroAleatorio = withRouter((props) => {
                         "url(http://www.rw-designer.com/cursor-extern.php?id=27134),auto" : "inherit"
             }}>
                 <img id="ball" style={{ display: captura ? "block" : "none" }} className="ball" src={pokeball} alt="pokeball" />
+
+
                 <div className="interno">
+
                     <div id="poke" className="contenedor" onClick={capturarPokemon}
                         style={{
-                            border: colorShiny(),
+                            
                             right: positionChangeX() + "%",
                             top: positionChangeY() + "%",
                             cursor:
                                 captura ?
                                     "url(http://www.rw-designer.com/cursor-extern.php?id=27134),auto" : "url(http://www.rw-designer.com/cursor-extern.php?id=17388),auto"
-
-
                         }}
                     >
                         <PokemonSalvaje captura={captura} hp={hp} maxHp={maxHp} setHp={setHp} setMaxHp={setMaxHp} dataList={dataList} setDataList={setDataList} url={urlPokemon === urlBase ? tirarDado() : urlPokemon} shiny={shiny} />

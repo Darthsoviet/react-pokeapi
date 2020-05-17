@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 
 export const PokemonSalvaje = withRouter((props) => {
 
-    const { dataList, url ,hp, setHp,maxHp,setMaxHp,captura} = props;
-    const [pokemon, setpokemon] = useState({ sprites: {}, stats: []});
-   
+    const { dataList, url, hp, setHp, maxHp, setMaxHp, captura, shiny } = props;
+    const [pokemon, setpokemon] = useState({ sprites: {}, stats: [] });
+
 
 
     let getPokemon = useCallback(async (signal) => {
@@ -35,21 +35,21 @@ export const PokemonSalvaje = withRouter((props) => {
             return data;
         }
     }, [url, dataList]);
-    const getHP =useCallback( (stats) => {
+    const getHP = useCallback((stats) => {
         stats.forEach((objeto) => {
 
             let hp;
             if (objeto.stat.name === "hp") {
 
-                 hp=objeto.base_stat;
-                 setHp(hp);
-                 setMaxHp(hp);
-                
-                
+                hp = objeto.base_stat;
+                setHp(hp);
+                setMaxHp(hp);
+
+
             }
             return hp
         })
-    },[setHp,setMaxHp])
+    }, [setHp, setMaxHp])
 
 
 
@@ -72,32 +72,32 @@ export const PokemonSalvaje = withRouter((props) => {
 
 
                     })
-                   
+
                     console.log("render");
 
                 });
-                
-                
-                
-    },
-        [setpokemon, url, getPokemon, dataList,getHP]);
 
-   
-    
+
+
+    },
+        [setpokemon, url, getPokemon, dataList, getHP]);
+
+
+
 
 
     const selectorImagen = () => {
         if (props.shiny && pokemon.sprites.front_shiny) {
-            if(captura && pokemon.sprites.back_shiny){
+            if (captura && pokemon.sprites.back_shiny) {
                 return pokemon.sprites.front_shiny;
             }
             return (pokemon.sprites.front_shiny);
         } else if (pokemon.sprites.front_default) {
-            if(captura && pokemon.sprites.back_default){
-              return  pokemon.sprites.back_default;
+            if (captura && pokemon.sprites.back_default) {
+                return pokemon.sprites.back_default;
 
             }
-            
+
             return (pokemon.sprites.front_default);
         }
         else {
@@ -106,12 +106,44 @@ export const PokemonSalvaje = withRouter((props) => {
 
     }
 
+    const medidorSalud = (hp, maxHp) => {
+        if (hp < maxHp * 0.8 && hp >= maxHp * 0.5) {
+            return "greenyellow";
+        } else if (hp < maxHp * 0.5 && hp >= maxHp * 0.2) {
+            return "goldenrod";
+        } else if (hp <= maxHp * 0.19) {
+            return "crimson";
+        }
+    }
+    const colorShiny = (shiny) => {
+        if (shiny) {
+            return " 1px solid gold";
+        } else {
+            return "1px solid black";
+        }
+    }
 
     return (
         <>
 
+            <div className="contenedor-barra" style={
+                {
+                    border: colorShiny(shiny)
+                }}>
 
-            <meter min={0} value={hp} max={maxHp} />
+                <div className="barra"
+                    style={
+                        {
+                            width: (hp * 100 / maxHp) + "%",
+                            backgroundColor: medidorSalud(hp, maxHp)
+                        }
+                    }
+                >
+                    
+
+                </div>
+            </div>
+
             <img className={"salvaje"} src={selectorImagen()} alt="" />
         </>
 
