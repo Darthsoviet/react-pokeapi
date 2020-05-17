@@ -2,6 +2,11 @@
    
     .escenario{
         
+        .ball{
+        position: absolute;
+        max-width: 45px;
+        max-height: 45px;
+        }
         
         display: block;
         height: 100%;
@@ -21,6 +26,10 @@
                 position: absolute;
                 top: 50%;
                 right: 50%;
+                height: 100px;
+                width: 100px;
+                border-radius: 100%;
+                cursor: pointer;
             }
             
         }

@@ -5,6 +5,7 @@
 @import "MenuTipo.scss";
 @import "Pokemon.scss";
 @import "EncuentroAleatorio.scss";
+@import "PokemonSalvaje.scss";
 
 
 
@@ -34,6 +35,7 @@ body {
 }
 
 @include Nav;
+@include PokemonSalvaje;
 @include PokemonCard;
 @include Pokemons;
 @include MenuTipo;

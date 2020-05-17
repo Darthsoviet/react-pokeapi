@@ -94,6 +94,11 @@ nav ul li button:hover {
     transition: all 0.5s;
   }
 }
+.salvaje {
+  max-width: 92px;
+  max-height: 92px;
+}
+
 .cartaPokemon {
   box-sizing: content-box;
   margin: 0 auto;
@@ -207,9 +212,11 @@ main {
   }
 
   .botones {
+    background-color: transparent;
     height: min-content;
     margin: 0;
     position: fixed;
+    bottom: 1%;
   }
   .botones button {
     margin: auto 0;
@@ -557,6 +564,11 @@ main {
   background-repeat: repeat-x;
   background-attachment: local;
 }
+.escenario .ball {
+  position: absolute;
+  max-width: 45px;
+  max-height: 45px;
+}
 .escenario .interno {
   display: block;
   width: 100%;
@@ -566,6 +578,10 @@ main {
   position: absolute;
   top: 50%;
   right: 50%;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 750px) {

@@ -8,7 +8,7 @@ export const PokemonCard = withRouter((props) => {
     const {dataList} =props;
     const { url } = props;
     const { history } = props;
-    const [pokemon, setpokemon] = useState({ name: "", id: "", types: [], sprites: {}, abilities: [], moves: [], weight: "", height: "" });
+    const [pokemon, setpokemon] = useState({ name: "", id: "", types: [], sprites: {}, abilities: [], moves: [], weight: "", height: "" ,stats:[]});
 
 
 
@@ -21,10 +21,10 @@ export const PokemonCard = withRouter((props) => {
             let response = await fetch(url,{signal});
 
             response = await response.json();
-            let { name, id, types, sprites } = response;
-            data = { name, id, types, sprites}
+            let { name, id, types, sprites,stats } = response;
+            data = { name, id, types, sprites,stats}
 
-            if(dataList.size>200){
+            if(dataList.size>500){
 
                
              dataList.clear();
@@ -56,15 +56,15 @@ export const PokemonCard = withRouter((props) => {
             .then(
                 (data) => {
 
-                    let { name, id, types, sprites} = data;
+                    let { name, id, types, sprites,stats} = data;
 
                     setpokemon({
                         "name": name,
                         "id": id,
                         "types": types,
                         "sprites": sprites,
-                       
-
+                        "stats":stats
+                    
                     })
 
                 });
