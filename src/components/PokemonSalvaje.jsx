@@ -1,78 +1,39 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import pokeball from "../assets/img/pokeball.png";
 import { withRouter } from 'react-router-dom';
+import { PokemonEntrenado } from "../js/PokemonEntrenado";
+import { escogerMoivmientos ,getPokemon} from "../js/Pokemon";
+
 
 export const PokemonSalvaje = withRouter((props) => {
 
-    const { dataList, url, hp, setHp, maxHp, setMaxHp, captura, shiny } = props;
-    const [pokemon, setpokemon] = useState({ sprites: {}, stats: [] });
-
-
-
-    let getPokemon = useCallback(async (signal) => {
-
-        let data;
-
-        if (!dataList.get(url)) {
-
-            let response = await fetch(url, { signal });
-
-            response = await response.json();
-            let { sprites, stats } = response;
-            data = { sprites, stats }
-            if (dataList.size > 200) {
-                dataList.clear();
-            }
-            dataList.set(url, JSON.stringify(data));
-
-            return data
-
-        } else {
-
-
-            data = JSON.parse(dataList.get(url));
-
-            return data;
-        }
-    }, [url, dataList]);
-    const getHP = useCallback((stats) => {
-        stats.forEach((objeto) => {
-
-            let hp;
-            if (objeto.stat.name === "hp") {
-
-                hp = objeto.base_stat;
-                setHp(hp);
-                setMaxHp(hp);
-
-
-            }
-            return hp
-        })
-    }, [setHp, setMaxHp])
-
-
-
+    const { dataList, url, captura, pokemon, setpokemon } = props;
 
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
 
 
-        getPokemon(signal)
+        getPokemon(url,dataList,signal)
             .then(
                 async (data) => {
+                    let aux;
 
-                    let { sprites, stats } = data;
-                    getHP(stats)
-                    setpokemon({
-
-                        "sprites": sprites,
-                        "stats": stats,
+                    let { sprites, stats, types, moves } = data;
+                     let movimientosAprendidos = await escogerMoivmientos(moves,dataList);
 
 
-                    })
+                    aux = new PokemonEntrenado(null, null, types, sprites, null, 
+                    moves, null, null, stats);
+                    
+                    aux.setHP();
 
+                    
+
+                    aux.setMovimientosAprendidos(movimientosAprendidos);
+
+
+                    setpokemon(aux)
                     console.log("render");
 
                 });
@@ -80,7 +41,7 @@ export const PokemonSalvaje = withRouter((props) => {
 
 
     },
-        [setpokemon, url, getPokemon, dataList, getHP]);
+        [setpokemon, url, dataList]);
 
 
 
@@ -125,21 +86,23 @@ export const PokemonSalvaje = withRouter((props) => {
 
     return (
         <>
-
+            <div>
+                        Lv {pokemon.nivel}
+                    </div>
             <div className="contenedor-barra" style={
                 {
-                    border: colorShiny(shiny)
+                    border: colorShiny(pokemon.shiny)
                 }}>
-
+                    
                 <div className="barra"
                     style={
                         {
-                            width: (hp * 100 / maxHp) + "%",
-                            backgroundColor: medidorSalud(hp, maxHp)
+                            width: (pokemon.hp * 100 / pokemon.hpMax) + "%",
+                            backgroundColor: medidorSalud(pokemon.hp, pokemon.hpMax)
                         }
                     }
                 >
-                    
+
 
                 </div>
             </div>

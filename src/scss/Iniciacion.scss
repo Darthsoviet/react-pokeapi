@@ -1,0 +1,8 @@
+@mixin Iniciacion {
+    .lista-iniciacion{
+        margin-top: 30%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+

@@ -1,0 +1,84 @@
+@mixin Bautizo {
+
+    .pokemon{
+        .botton_confirmar{
+            display: block;
+            width: 100%;
+            
+            .confirmar{
+                display: block;
+                margin: 0 auto;
+                width: 60%;
+                outline: none;
+                border: 2px solid goldenrod;
+                color: white;
+                background-color: gold;
+                border-radius: 15px;
+
+            }
+        }
+        h1{
+            input{
+                margin: 1%;
+                background-color: transparent;
+                display: inline-block;
+                outline: none;
+                border: none;
+                width: auto;
+                text-align: center;
+                border-bottom: 3px solid black;
+            }
+        }
+        .stats{
+            margin: auto 0;
+            padding: 0;
+            .stats_lista{
+                width: 80%;
+                padding: 0;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(6,1fr);
+                grid-template-rows: 150px 20px ;
+                grid-auto-rows: 150px;
+
+
+                .atk,.hp,.def,.sAtk,.sDef,.iv{
+                    overflow: hidden;
+                    position: relative;
+                    max-width: 60%;
+                    height: 150px;
+                    max-height: 150px;
+                    display: block;
+                    border: 2px solid black;
+                    align-content:center;
+                    align-items:flex-start;
+                }
+                h3{
+                    text-align: left;
+                    padding-left: 1p2px;
+                }
+                .barra_atk,.barra_hp,.barra_def,.barra_sAtk,.barra_sDef{
+                    width: 100%;
+                    bottom: 0;
+                    position: absolute;
+                    display: block;
+
+                   
+                    background-color: gold;
+
+                }
+                .barra_iv{
+                    width: 100%;
+                    bottom: 0;
+                    position: absolute;
+                    display: block;
+
+                   
+                    background-color: blue;
+
+                }
+            }
+        }
+    }
+    
+}

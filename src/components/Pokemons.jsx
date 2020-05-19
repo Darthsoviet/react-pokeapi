@@ -4,7 +4,7 @@ import { PokemonCard } from "./PokemonCard"
 export const Pokemons = (props) => {
 
     const { setultimo, ultimo } = props;
-    const { dataList,setDataList } = props;
+    const { dataList} = props;
     const [url, seturl] = useState(ultimo);
     const [lista, setlista] = useState([]);
     const [siguiente, setsiguiente] = useState("");
@@ -52,11 +52,11 @@ export const Pokemons = (props) => {
         setsiguiente(data.next);
         setanterior(data.previous);
         let temp = data.results.map((elemento, i) => {
-            return <PokemonCard dataList={dataList} setDataList={setDataList} url={elemento.url} shiny={shiny} key={i} />
+            return <PokemonCard dataList={dataList}   url={elemento.url} shiny={shiny} key={i} />
         });
         setlista(temp);
     },
-        [shiny, dataList,setDataList]);
+        [shiny,dataList]);
 
     useEffect(() => {
 
@@ -64,6 +64,8 @@ export const Pokemons = (props) => {
 
     },
         [setlista, url, pintarLista]);
+
+        
     return (
         <main>
             <ul className={"listaPokemons"}>

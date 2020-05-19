@@ -6,6 +6,8 @@
 @import "Pokemon.scss";
 @import "EncuentroAleatorio.scss";
 @import "PokemonSalvaje.scss";
+@import "Iniciacion.scss";
+@import "Bautizo.scss";
 
 
 
@@ -55,7 +57,8 @@ body {
     
     
 }
-
+@include Bautizo;
+@include Iniciacion;
 @include Nav;
 @include PokemonCard;
 @include Pokemons;

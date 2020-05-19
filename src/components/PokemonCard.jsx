@@ -1,50 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import pokeball from "../assets/img/pokeball.png";
+import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom';
-import { selectorTipo } from "../js/selectorTipo";
+import { Pokemon, getPokemon } from "../js/Pokemon";
+import {Card} from "./Card"
 
 
 export const PokemonCard = withRouter((props) => {
-    const {dataList} =props;
+    const { dataList, shiny } = props;
     const { url } = props;
     const { history } = props;
-    const [pokemon, setpokemon] = useState({ name: "", id: "", types: [], sprites: {}, abilities: [], moves: [], weight: "", height: "" ,stats:[]});
+    const [pokemon, setpokemon] = useState(new Pokemon());
 
 
 
-    let getPokemon = useCallback(async (signal) => {
-        
-        let data;
-
-        if (!dataList.get(url)) {
-
-            let response = await fetch(url,{signal});
-
-            response = await response.json();
-            let { name, id, types, sprites,stats } = response;
-            data = { name, id, types, sprites,stats}
-
-            if(dataList.size>500){
-
-               
-             dataList.clear();
-            }
-            
-            dataList.set(url, JSON.stringify(data));
-           
-           
-            
-
-            return data
-
-        } else {
-            
-            
-            data = JSON.parse(dataList.get(url));
-            
-            return data;
-        }
-    }, [url,dataList]);
 
 
     useEffect(() => {
@@ -52,53 +19,43 @@ export const PokemonCard = withRouter((props) => {
         const signal = abortController.signal;
 
 
-        getPokemon(signal)
+        getPokemon(url, dataList, signal)
             .then(
                 (data) => {
 
-                    let { name, id, types, sprites,stats} = data;
+                    let { name, id, types, sprites, stats } = data;
+                    let aux = new Pokemon(name, id, types, sprites, null, null, null, null, stats);
 
-                    setpokemon({
-                        "name": name,
-                        "id": id,
-                        "types": types,
-                        "sprites": sprites,
-                        "stats":stats
-                    
-                    })
+                    setpokemon(aux);
+
+                    console.log("render");
 
                 });
-              
+        console.log("render");
+
+        return () => {
+            abortController.abort();
+        }
+
     },
-        [setpokemon, url, getPokemon,dataList]);
+        [url, dataList]);
 
 
-    const irPokemon = () => {
 
-        history.push(`/pokemon/${pokemon.id}`);
+
+
+
+    const irPokemon = (id) => {
+
+        history.push(`/pokemon/${id}`);
     }
-
-    const selectorImagen = () => {
-        if (props.shiny && pokemon.sprites.front_shiny) {
-            return (pokemon.sprites.front_shiny);
-         } else if (pokemon.sprites.front_default) {
-             return (pokemon.sprites.front_default);
-        }
-        else {
-            return (pokeball);
-        }
-
-    }
-
 
     return (
 
-        <li onClick={irPokemon} className={"cartaPokemon"}>
-            <h3 style={{ "backgroundColor": selectorTipo(pokemon.types) }} className={"nombrePokemon"}>{pokemon.name}</h3>
-            <h3 className={"idPokemon"}>{pokemon.id}</h3>
-            <img src={selectorImagen()} alt="" />
-
+        <li onClick={()=>{irPokemon(pokemon.id)}}>
+            <Card pokemon={pokemon} shiny={shiny}/>
         </li>
+
 
     );
 
@@ -107,5 +64,3 @@ export const PokemonCard = withRouter((props) => {
 
 
 });
-
-

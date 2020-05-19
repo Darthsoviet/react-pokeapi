@@ -1,93 +1,58 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import pokeball from "../assets/img/pokeball.png";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { selectorTipo, switchTipo } from "../js/selectorTipo";
+import { Pokemon as PokemonObject, getPokemon } from "../js/Pokemon";
+
 
 export const Pokemon = withRouter((props) => {
 
-    const {history} = props;
+    const { history } = props;
     let { id } = props.match.params;
-    const {dataList} =props;
+    const { dataList } = props;
     const [shiny, setshiny] = useState(false);
     const [tipo, setTipo] = useState([]);
-    const [pokemon, setpokemon] = useState({ name: "", id: "", types: [], sprites: {}, abilities: [], moves: [], weight: "", height: "" });
+    const [pokemon, setpokemon] = useState(new PokemonObject());
     const [movimiento, setMovimiento] = useState([]);
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     const [habilidad, sethabilidad] = useState([]);
 
 
-    let getPokemon =
-        useCallback(async (url, signal) => {
-            let data;
 
-            if (!dataList.get(url)) {
 
-                let response = await fetch(url, { signal })
-                response = await response.json();
-                let { name, id, types, sprites, weight, height, abilities, moves } = response;
-
-                data = { name, id, types, sprites, weight, height, abilities, moves }
-                if (dataList.size > 200) {
-                    dataList.clear();
-                }
-
-                dataList.set(url, JSON.stringify(data));
-
-                return data
-
-            } else {
-                data = JSON.parse(dataList.get(url));
-
-                if (!(data.abilities || data.moves || data.weight || data.height)) {
-
-                    let response = await fetch(url, { signal })
-                    response = await response.json();
-                    let { name, id, types, sprites, weight, height, abilities, moves } = response;
-                    data = { name, id, types, sprites, weight, height, abilities, moves }
-                    dataList.set(url, JSON.stringify(data));
-
-                }
-                return data;
-            }
-        }, [dataList]);
 
     useEffect(() => {
-        const abortController = new AbortController();
-        const signal = abortController.signal;
+       
+            const abortController = new AbortController();
+            const signal = abortController.signal;
 
-        getPokemon(url, signal).then(
-            (data) => {
+            getPokemon(url,dataList, signal).then(
+                (pokemon) => {
 
-                let { name, id, types, sprites, abilities, moves, weight, height } = data;
+                    let aux
+                    let { name, id, types, sprites, abilities, moves, weight, height, stats } = pokemon;
 
-                setpokemon({
-                    "name": name,
-                    "id": id,
-                    "types": types,
-                    "sprites": sprites,
-                    "abilities": abilities,
-                    "moves": moves,
-                    "weight": weight,
-                    "height": height
-                });
-                sethabilidad(iterarHabilidades(abilities));
-                setMovimiento(iterarMovimientos(moves));
-                setTipo(iterarTipos(types));
 
-            })
+                    aux = new PokemonObject(name, id, types, sprites, abilities, moves, weight, height, stats);
 
+                    setpokemon(aux);
+                    sethabilidad(iterarHabilidades(abilities));
+                    setMovimiento(iterarMovimientos(moves));
+                    setTipo(iterarTipos(types));
+
+                })
+           
 
 
 
         return () => {
             abortController.abort();
-            console.log("abortado" + signal.aborted);
 
         }
 
 
     },
-        [ url, getPokemon]);
+        [url, dataList]);
 
 
     const selectorImagen = () => {
@@ -153,12 +118,12 @@ export const Pokemon = withRouter((props) => {
     const avanzar = () => {
         let aux = parseInt(id) + 1;
         setUrl(`https://pokeapi.co/api/v2/pokemon/${aux}/`);
-        history.push("/pokemon/"+aux);
+        history.push("/pokemon/" + aux);
     }
     const retroceder = () => {
         let aux = parseInt(id) - 1;
         setUrl(`https://pokeapi.co/api/v2/pokemon/${aux}/`);
-        history.push("/pokemon/"+aux);
+        history.push("/pokemon/" + aux);
 
     }
 
