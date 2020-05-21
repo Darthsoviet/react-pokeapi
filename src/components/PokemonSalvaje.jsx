@@ -19,12 +19,13 @@ export const PokemonSalvaje = withRouter((props) => {
                 async (data) => {
                     let aux;
 
-                    let { sprites, stats, types, moves } = data;
+                    let {name, id, types, sprites,abilities, 
+                        moves,weight,height, stats } = data;
                      let movimientosAprendidos = await escogerMoivmientos(moves,dataList);
 
 
-                    aux = new PokemonEntrenado(null, null, types, sprites, null, 
-                    moves, null, null, stats);
+                    aux = new PokemonEntrenado(name, id, types, sprites,abilities, 
+                    moves,weight,height, stats);
                     
                     aux.setHP();
 

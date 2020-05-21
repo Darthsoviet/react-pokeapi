@@ -1,9 +1,11 @@
 @mixin Bautizo {
 
     .pokemon{
+        
         .botton_confirmar{
             display: block;
             width: 100%;
+            padding: 5%;
             
             .confirmar{
                 display: block;

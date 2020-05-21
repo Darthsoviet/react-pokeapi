@@ -1,0 +1,45 @@
+@mixin PokemonesUsuario {
+
+    .mainMisPokemons{
+        margin: 0;
+
+       
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        height: 100%;
+        section{
+            h2{
+                text-align: center;
+                color: white;
+            }
+    
+            .misPokemons{
+
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+            }
+
+        }
+        
+        aside{
+            height: 100%;
+            background-color: #191919;
+
+            h2{
+                
+                text-align: center;
+                color: white;
+            }
+            ul{
+
+                height: 100%;
+                display: grid;
+                gap: 2%;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr 1fr;
+            }
+        }
+
+    }
+    
+}

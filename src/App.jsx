@@ -34,14 +34,13 @@ function App() {
         <Route exact path="/pokemons" render={() => <Pokemons dataList={dataList}  setultimo={setultimo} ultimo={ultimo} />} />
         <Route exact path="/pokemons/tipo/:tipo" render={() => <TipoPokemon dataList={dataList} />} />
         <Route exact path="/pokemon/:id" render={() => <Pokemon dataList={dataList} />} />
-        <Route exact path="/encuentroAleatorio" render={() => <EncuentroAleatorio datalist={dataList}
+        <Route exact path="/encuentroAleatorio" render={() => <EncuentroAleatorio setPokemonCapturado={setPokemonCapturado} datalist={dataList}
         userPokemons={userPokemons} setUserPokemons={setUserPokemons} equipoActual={equipoActual} setEquipoActual={setEquipoActual}/>} />
-        <Route exact path="/iniciacion" render={()=><Iniciacion dataList={dataList} userPokemons={userPokemons} setUserPokemons={setUserPokemons}
+        <Route exact path="/iniciacion" render={()=><Iniciacion dataList={dataList} equipoActual={equipoActual} userPokemons={userPokemons} 
          setPokemonCapturado={setPokemonCapturado}
         />}/>
         <Route exact path="/misPokemons" render={()=><PokemonesUsuario userPokemons={userPokemons} setUserPokemons={setUserPokemons} equipoActual={equipoActual} setEquipoActual={setEquipoActual}/>}/>
         <Route exact path="/bautizo" render={()=><Bautizo pokemonCapturado={pokemonCapturado} setPokemonCapturado={setPokemonCapturado} userPokemons={userPokemons} setUserPokemons={setUserPokemons} dataList={dataList}/>}/>
-
 
 
       </Switch>

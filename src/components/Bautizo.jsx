@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import pokeball from "../assets/img/pokeball.png";
 import { withRouter, Redirect } from "react-router-dom";
 import { selectorTipo, switchTipo } from "../js/selectorTipo";
@@ -7,7 +7,7 @@ import { escogerMoivmientos } from '../js/Pokemon';
 
 export const Bautizo = withRouter((props) => {
 
-    const { history, pokemonCapturado, setPokemonCapturado, userPokemons, setUserPokemons,dataList } = props;
+    const { history, pokemonCapturado, setPokemonCapturado, userPokemons, setUserPokemons, dataList } = props;
     const [tipos, setTipos] = useState([])
     const [habilidades, setHabilidades] = useState([])
     const [movimientos, setMovimientos] = useState([])
@@ -15,18 +15,24 @@ export const Bautizo = withRouter((props) => {
 
 
     useEffect(() => {
-        escogerMoivmientos(pokemonCapturado.moves,dataList).then((lista)=>{
-            
-            pokemonCapturado.setMovimientosAprendidos(lista);
-            setPokemonCapturado(pokemonCapturado);
-            setMovimientos(iterarMovimientos(lista))
-            console.log("render bautizo");
-            
-        });
-    },[pokemonCapturado,setPokemonCapturado,dataList])
+
+        if (pokemonCapturado) {
+            setHabilidades(iterarHabilidades(pokemonCapturado.abilities));
+            setTipos(iterarTipos(pokemonCapturado.types));
 
 
 
+            escogerMoivmientos(pokemonCapturado.moves, dataList).then((lista) => {
+                console.log("pokemon capturado",pokemonCapturado);
+                
+                pokemonCapturado.movimientosAprendidos=lista;
+                setPokemonCapturado(pokemonCapturado);
+                setMovimientos(iterarMovimientos(lista))
+                console.log("render bautizo");
+
+            });
+        }
+    }, [pokemonCapturado, setPokemonCapturado, dataList])
 
 
 
@@ -81,14 +87,14 @@ export const Bautizo = withRouter((props) => {
 
                 </li>
             );
-           
-                    
+
+
         });
-        
-        
+
+
         return moves
     }
-   
+
     const iterarTipos = (lista) => {
         let listaHabilidades = lista.map((tipo, i) => {
             return (
@@ -107,14 +113,14 @@ export const Bautizo = withRouter((props) => {
     const confirmar = async () => {
 
         let cambiarPagina = async () => {
-            await setUserPokemons(...userPokemons, pokemonCapturado);
+        
+            await setUserPokemons([...userPokemons, pokemonCapturado]);
             await setPokemonCapturado(null);
         }
 
         await cambiarPagina();
-        setTimeout(() => {
-            history.push("/misPokemons")
-        }, 20000)
+        history.push("/misPokemons")
+
 
 
     }
@@ -160,7 +166,7 @@ export const Bautizo = withRouter((props) => {
                         </h1>
                         <ul className="stats_lista">
                             <div className="hp">
-                                <div style={{ height: pokemonCapturado.hp }} className="barra_hp float-bottom">{pokemonCapturado.hp}</div>
+                                <div style={{ height: pokemonCapturado.hpMax }} className="barra_hp float-bottom">{pokemonCapturado.hpMax}</div>
                             </div>
                             <div className="atk">
                                 <div style={{ height: pokemonCapturado.atk }} className="barra_atk">{pokemonCapturado.atk}</div>

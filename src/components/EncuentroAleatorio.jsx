@@ -8,7 +8,7 @@ import pokeball from "../assets/img/pokeball.png";
 
 export const EncuentroAleatorio = withRouter((props) => {
 // eslint-disable-next-line
-    const { dataList, setDataList,userPokemons,equipoActual, history } = props;
+    const { dataList, setDataList,userPokemons,equipoActual,setPokemonCapturado, history } = props;
 
     const urlBase = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -75,11 +75,12 @@ export const EncuentroAleatorio = withRouter((props) => {
                 let ball = document.getElementById("ball");
                 ball.style.right = poken.style.right;
                 ball.style.top = poken.style.top;
+                setPokemonCapturado(pokemon);
 
                 setTimeout(() => {
                     alert("capturado");
 
-                    history.push("/pokemon/" + id);
+                    history.push("/bautizo");
 
                 }, 500);
 
@@ -121,14 +122,11 @@ export const EncuentroAleatorio = withRouter((props) => {
             return "url(https://i.pinimg.com/originals/a5/46/d8/a546d8368c493759dfd3e9f9fc30b515.jpg)";
         }
     }
-    if(userPokemons.length===0){
+    if(equipoActual.length===0){
         return <Redirect to="/iniciacion"/>
         
     }
-    if(userPokemons.length===0){
-        return <Redirect to="/iniciacion"/>
-        
-    }
+    
     return (
 
         <main>
