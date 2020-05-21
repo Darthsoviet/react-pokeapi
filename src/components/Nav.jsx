@@ -3,17 +3,17 @@ import { withRouter } from "react-router-dom";
 
 
 export const Nav = withRouter((props) => {
-    const { history, userPokemons } = props;
+    const { history, userPokemons,equipoActual } = props;
     const [renderUserPokemons, setRenderUserPokemons] = useState(false)
 
     useEffect(() => {
 
-        if (userPokemons.length > 0) {
+        if (userPokemons.length > 0 || equipoActual.length>0 ) {
             setRenderUserPokemons(true);
 
         }
 
-    }, [userPokemons]);
+    }, [userPokemons.length,equipoActual.length]);
 
     const irInicio = () => {
         history.push("/");

@@ -27,7 +27,7 @@ export class PokemonEntrenado extends Pokemon {
         let idx=Math.round(Math.random()*10000);
         return idx;
     }
-    generarAtk(stats) {
+    generarAtk() {
         let resultado;
         this.stats.forEach((objeto) => {
 
@@ -41,7 +41,7 @@ export class PokemonEntrenado extends Pokemon {
     generarShiny() {
         let resultado=false;
         let suerteShiny = Math.random() * 100;
-        if (suerteShiny <= 4) {
+        if (suerteShiny <= 2) {
             resultado=true
             
         }

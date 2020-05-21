@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
 import "./css/styles.css";
 import { Nav } from "./components/Nav";
@@ -20,14 +20,21 @@ function App() {
   const [ultimo, setultimo] = useState("https://pokeapi.co/api/v2/pokemon");
   const dataList = useRef(new Map());
   
-  const [userPokemons, setUserPokemons] = useState(localStorage.getItem("userPokemons")||[]);
-  const [equipoActual, setEquipoActual] = useState(localStorage.getItem("equipoActual")||[]);
+  const [userPokemons, setUserPokemons] = useState(JSON.parse(localStorage.getItem("userPokemons"))||[]);
+  const [equipoActual, setEquipoActual] = useState( JSON.parse(localStorage.getItem("equipoActual"))||[]);
   const [pokemonCapturado, setPokemonCapturado] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem("userPokemons",JSON.stringify(userPokemons));
+    localStorage.setItem("equipoActual",JSON.stringify(equipoActual));
+    
+   
+  }, [userPokemons,equipoActual])
 
   return (
     <>
       <MenuTipo />
-      <Nav userPokemons={userPokemons}/>
+      <Nav userPokemons={userPokemons} equipoActual={equipoActual}/>
 
       <Switch>
         <Route exact path="/" render={() => <Inicio />} />

@@ -722,6 +722,10 @@ main {
   grid-template-columns: 4fr 1fr;
   height: 100%;
 }
+.mainMisPokemons li {
+  width: min-content;
+  height: min-content;
+}
 .mainMisPokemons section h2 {
   text-align: center;
   color: white;

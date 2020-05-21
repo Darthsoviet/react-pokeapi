@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { withRouter,Redirect } from "react-router-dom";
 import { PokemonSalvaje } from "./PokemonSalvaje";
 import { PokemonEntrenado } from "../js/PokemonEntrenado";
@@ -13,7 +13,6 @@ export const EncuentroAleatorio = withRouter((props) => {
     const urlBase = "https://pokeapi.co/api/v2/pokemon/";
 
     const [urlPokemon, setUrlPokemon] = useState(urlBase);
-    const [id, setId] = useState(0);
     const [captura, setCaptura] = useState(false)
     const [poken, setPoken] = useState({});
     const [bg, setBg] = useState("");
@@ -21,9 +20,16 @@ export const EncuentroAleatorio = withRouter((props) => {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0)
 
-
-    useEffect(() => {
+    useLayoutEffect(() => {
+        tirarDado();
         setPoken(document.getElementById("poke"));
+
+        
+        
+    }, [])
+
+    useLayoutEffect(() => {
+        
         let idx;
         let idy;
         if (!captura) {
@@ -37,6 +43,7 @@ export const EncuentroAleatorio = withRouter((props) => {
 
 
 
+
         return () => {
             if (idx || idy) {
                 clearInterval(idx);
@@ -46,6 +53,8 @@ export const EncuentroAleatorio = withRouter((props) => {
 
         };
     }, [captura]);
+
+    
     
 
 
@@ -54,7 +63,6 @@ export const EncuentroAleatorio = withRouter((props) => {
         let numeroPokedex = Math.random() * 807;
         let pokedex = Math.round(numeroPokedex);
         setUrlPokemon(urlBase + pokedex + "/");
-        setId(pokedex);
         return pokedex
 
     }
@@ -151,7 +159,7 @@ export const EncuentroAleatorio = withRouter((props) => {
                                     "url(http://www.rw-designer.com/cursor-extern.php?id=27134),auto" : "url(http://www.rw-designer.com/cursor-extern.php?id=17388),auto"
                         }}
                     >
-                        <PokemonSalvaje pokemon={pokemon} setpokemon={setpokemon} captura={captura} dataList={dataList} setDataList={setDataList} url={urlPokemon === urlBase ? tirarDado() : urlPokemon} />
+                        <PokemonSalvaje pokemon={pokemon} setpokemon={setpokemon} captura={captura} dataList={dataList} setDataList={setDataList} url={urlPokemon } />
 
                     </div>
                 </div>

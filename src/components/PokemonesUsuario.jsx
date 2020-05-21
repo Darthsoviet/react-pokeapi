@@ -59,7 +59,7 @@ export const PokemonesUsuario = (props) => {
                 </li>)
         });
         return listaComponentes
-    }, [setEquipoActual, setUserPokemons, userPokemons])
+    }, [setEquipoActual, setUserPokemons, userPokemons,equipoActual])
     //------------------------------------------------------------------
     const pintarPokemonesUsuario = useCallback((lista) => {
         let listaComponentes = lista.map((pokemon, i) => {
@@ -108,7 +108,7 @@ export const PokemonesUsuario = (props) => {
                 </li>)
         });
         return listaComponentes
-    }, [equipoActual, setEquipoActual, setUserPokemons]);
+    }, [equipoActual, setEquipoActual, setUserPokemons,userPokemons]);
 
     //------------------------------------------------------------------
 
