@@ -3,27 +3,22 @@ import pokeball from "../assets/img/pokeball.png";
 import { withRouter } from 'react-router-dom';
 
 
-export const PokemonSalvaje = withRouter((props) => {
+export const PokemonUsuario = withRouter((props) => {
 
-    const {captura, pokemon } = props;
+    const { pokemon } = props;
 
    
 
 
 
     const selectorImagen = () => {
-        if (pokemon.shiny && pokemon.sprites.front_shiny) {
-            if (captura && pokemon.sprites.back_shiny) {
-                return pokemon.sprites.front_shiny;
-            }
-            return (pokemon.sprites.front_shiny);
-        } else if (pokemon.sprites.front_default) {
-            if (captura && pokemon.sprites.back_default) {
-                return pokemon.sprites.back_default;
+        if (pokemon.shiny && pokemon.sprites.back_shiny) {
+            
+            return (pokemon.sprites.back_shiny);
+        } else if (pokemon.sprites.back_default) {
+           
 
-            }
-
-            return (pokemon.sprites.front_default);
+            return (pokemon.sprites.back_default);
         }
         else {
             return (pokeball);

@@ -11,6 +11,7 @@ import { EncuentroAleatorio } from "./components/EncuentroAleatorio";
 import {Iniciacion} from "./components/Iniciacion";
 import {PokemonesUsuario} from "./components/PokemonesUsuario";
 import { Bautizo} from "./components/Bautizo";
+import { PokemonEntrenado } from './js/PokemonEntrenado';
 
 
 
@@ -23,6 +24,35 @@ function App() {
   const [userPokemons, setUserPokemons] = useState(JSON.parse(localStorage.getItem("userPokemons"))||[]);
   const [equipoActual, setEquipoActual] = useState( JSON.parse(localStorage.getItem("equipoActual"))||[]);
   const [pokemonCapturado, setPokemonCapturado] = useState(null);
+
+
+  //convierte  los objetos JSON en objetos de clase
+  useEffect(() => {
+    setUserPokemons((userPokemons)=>{
+      let aux=userPokemons.map((pokemonJson)=>{
+        return Object.assign(new PokemonEntrenado(),pokemonJson)
+          
+      })
+      return aux
+    }
+    
+    
+    );
+
+    setEquipoActual((equipoActual)=>{
+      let aux =equipoActual.map((pokemonJson)=>{
+        return Object.assign(new PokemonEntrenado(),pokemonJson)
+          
+      })
+      return aux;
+
+    }
+      
+     )
+    
+    
+    
+  },[]);
 
   useEffect(() => {
     localStorage.setItem("userPokemons",JSON.stringify(userPokemons));

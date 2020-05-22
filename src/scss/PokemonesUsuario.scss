@@ -1,49 +1,151 @@
 @mixin PokemonesUsuario {
 
-    .mainMisPokemons{
-        li{
-            width: min-content;
-            height: min-content;
-        }
-        margin: 0;
-
-       
+    .mainMisPokemons {
         display: grid;
         grid-template-columns: 4fr 1fr;
         height: 100%;
-        section{
-            h2{
+
+        * {
+            margin: 0;
+        }
+
+        li {
+            width: min-content;
+            height: min-content;
+            margin: 0 auto;
+        }
+
+
+
+        section {
+
+            max-height: 100%;
+            scroll-behavior: auto;
+
+            h2 {
                 text-align: center;
                 color: white;
+                margin: 2vh;
             }
-    
-            .misPokemons{
 
+            .misPokemons {
+                gap: 15px;
                 display: grid;
-                grid-template-columns: repeat(4,1fr);
+                grid-template-columns: repeat(4, 1fr);
             }
 
         }
-        
-        aside{
-            height: 100%;
+
+        aside {
+            width: 100%;
+            height: auto;
+            display: block;
             background-color: #191919;
 
-            h2{
-                
-                text-align: center;
-                color: white;
-            }
-            ul{
 
-                height: 100%;
-                display: grid;
-                gap: 2%;
-                grid-template-columns: 1fr;
-                grid-template-rows: 1fr 1fr 1fr;
+            .container-team {
+                padding: 0;
+                position: fixed;
+                background-color: #191919;
+                display: flex;
+                flex-direction: column;
+
+                h2 {
+                    display: block;
+                    width: 100%;
+                    margin: 12px 15px;
+                    text-align: center;
+                    color: white;
+                }
+
+                ul {
+                    width: 100%;
+
+
+                    row-gap: 10px;
+                    display: grid;
+                    grid-template-rows: 1fr 1fr 1fr;
+                }
             }
+        }
+
+
+    }
+
+    @media screen and (max-width:750px) {
+        .mainMisPokemons {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            height: 100%;
+
+            * {
+                margin: 0;
+            }
+
+            li {
+                width: min-content;
+                height: min-content;
+                margin: 0 auto;
+            }
+
+
+
+            section {
+
+                max-height: 100%;
+                scroll-behavior: auto;
+
+                h2 {
+                    text-align: center;
+                    color: white;
+                    margin: 2vh;
+                }
+
+                .misPokemons {
+                    padding: 0;
+                    gap: 15px;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+            }
+
+            aside {
+                display: block;
+                width: 100%;
+                height: auto;
+
+                .container-team {
+                    height: auto;
+                    background-color: #191919;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    h2 {
+                        display: block;
+                        font-size: 2em;
+                        text-align: center;
+                        color: white;
+                    }
+
+                    ul {
+                        padding: 0;
+                        margin: 0 auto;
+                        row-gap: 10px;
+                        display: grid;
+                        grid-template-rows: 1fr 1fr 1fr;
+                    }
+
+                }
+
+
+
+            }
+
+
         }
 
     }
-    
+
 }

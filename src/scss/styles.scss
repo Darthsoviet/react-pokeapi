@@ -26,14 +26,15 @@
       
       /* Track */
       ::-webkit-scrollbar-track {
-        background: gold;
+        background: #191919;
       }
       
       /* Handle */
       ::-webkit-scrollbar-thumb {
-        background: crimson;
+        background: #323232;
         border-radius: 20px;
       }
+
       
       
     
@@ -50,15 +51,17 @@ body {
         height: 100%;
     }
     #root{
-        max-height: 100vh;
+
+        max-height: auto;
         display: grid;
         grid-template-rows: 10vh minmax(90vh,auto);
+    }
 
 
     }
     
     
-}
+
 @include Bautizo;
 @include Iniciacion;
 @include Nav;

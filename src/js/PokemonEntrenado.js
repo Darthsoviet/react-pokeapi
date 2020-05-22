@@ -147,6 +147,32 @@ export class PokemonEntrenado extends Pokemon {
     setMovimientosAprendidos(movimientosAprendidos) {
         this.movimientosAprendidos = movimientosAprendidos;
     }
+
+    atacar(adversario,movimiento){
+        let n=this.nivel;
+        let a;
+        
+        if(movimiento.damage_class.name==="special"){
+            a=this.specialAtk;
+        }else if(movimiento.damage_class.name==="physical"){
+            a=this.atk;
+        }else{
+            a=0;
+        }
+        let p = movimiento.power;
+        let d=adversario.def;
+        
+        let b=movimiento.type.name===this.types[0].type.name?1.5:1;
+        let e=1;//TODO
+        
+        let v=100-Math.round(Math.random()*15)
+        console.log("a "+a+" b "+b+" p "+p+"d "+d+" v "+v+" n "+n+" e"+e);
+        
+
+        let daño=0.01*b*e*v*((((0.2*n+1)*a*p)/(25*d))+2);
+        return daño
+        
+    }
     // attack(contrincante,movimiento){
 
     //         if(movimiento.damage_class.name==="special"){

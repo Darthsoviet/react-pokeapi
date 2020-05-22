@@ -25,14 +25,14 @@ export const PokemonesUsuario = (props) => {
                 <li style={shinyStyle(pokemon.shiny)} onClick={
                     () => {
                         if (lista.length - 1 === i) {
-                            let listaAux=[...equipoActual]
+                            let listaAux = [...equipoActual]
 
                             let aux = listaAux.pop()
 
                             setUserPokemons([...userPokemons, aux]);
                             setEquipoActual(listaAux)
                         } else if (lista.length > 1 && i === 0) {
-                            let listaAux=[...equipoActual]
+                            let listaAux = [...equipoActual]
 
 
                             let aux = listaAux.shift();
@@ -44,10 +44,10 @@ export const PokemonesUsuario = (props) => {
                         }
                         else {
 
-                            let listaAux=[...equipoActual]
+                            let listaAux = [...equipoActual]
 
-                            let aux = listaAux.splice(i, i);
-                            
+                            let aux = listaAux.splice(i, 1);
+
                             setUserPokemons([...userPokemons, aux[0]]);
                             setEquipoActual(listaAux)
 
@@ -59,7 +59,7 @@ export const PokemonesUsuario = (props) => {
                 </li>)
         });
         return listaComponentes
-    }, [setEquipoActual, setUserPokemons, userPokemons,equipoActual])
+    }, [setEquipoActual, setUserPokemons, userPokemons, equipoActual])
     //------------------------------------------------------------------
     const pintarPokemonesUsuario = useCallback((lista) => {
         let listaComponentes = lista.map((pokemon, i) => {
@@ -70,7 +70,7 @@ export const PokemonesUsuario = (props) => {
                         () => {
                             if (equipoActual.length < 3) {
                                 if (lista.length - 1 === i) {
-                                    let listaAux=[...userPokemons]
+                                    let listaAux = [...userPokemons]
 
 
                                     let aux = listaAux.pop()
@@ -78,10 +78,9 @@ export const PokemonesUsuario = (props) => {
 
                                     setUserPokemons(listaAux);
                                     setEquipoActual([...equipoActual, aux])
-                                    console.log("team", equipoActual);
 
                                 } else if (lista.length > 1 && i === 0) {
-                                    let listaAux=[...userPokemons]
+                                    let listaAux = [...userPokemons]
 
                                     let aux = listaAux.shift();
 
@@ -92,13 +91,14 @@ export const PokemonesUsuario = (props) => {
 
 
                                 } else {
-                                    let listaAux=[...userPokemons]
+                                    let listaAux = [...userPokemons]
 
-                                    let aux = listaAux.splice(i, i );
+                                    let aux = listaAux.splice(i, 1);
 
 
-                                    setUserPokemons(listaAux);
                                     setEquipoActual([...equipoActual, aux[0]]);
+                                    setUserPokemons(listaAux);
+
 
                                 }
                             }
@@ -108,7 +108,7 @@ export const PokemonesUsuario = (props) => {
                 </li>)
         });
         return listaComponentes
-    }, [equipoActual, setEquipoActual, setUserPokemons,userPokemons]);
+    }, [equipoActual, setEquipoActual, setUserPokemons, userPokemons]);
 
     //------------------------------------------------------------------
 
@@ -116,9 +116,7 @@ export const PokemonesUsuario = (props) => {
     useLayoutEffect(() => {
         setComponenteEquipo(pintarPokemonesEquipo(equipoActual));
         setComponentePokemons(pintarPokemonesUsuario(userPokemons));
-        console.log("pokemones usuario ,", userPokemons);
-
-        console.log("render pokemones");
+       
 
     }, [equipoActual, userPokemons, pintarPokemonesEquipo, pintarPokemonesUsuario])
 
@@ -146,10 +144,14 @@ export const PokemonesUsuario = (props) => {
             </section>
 
             <aside>
-                <h2>Equipo Actual</h2>
-                <ul>
-                    {componenteEquipo}
-                </ul>
+                <div className="container-team">
+                    <h2>Equipo Actual</h2>
+                    <ul>
+                        {componenteEquipo}
+                    </ul>
+
+                </div>
+
 
             </aside>
 

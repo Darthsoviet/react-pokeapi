@@ -52,7 +52,7 @@ export const Nav = withRouter((props) => {
                         <button onClick={irInicio}>Inicio</button>
                     </li>
                     <li>
-                        <button onClick={irMisPokemons}>misPokemones</button>
+                        <button onClick={irMisPokemons}>mis Pokemones</button>
                     </li>
 
 
