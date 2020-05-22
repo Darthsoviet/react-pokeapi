@@ -21,20 +21,24 @@ export const EncuentroAleatorio = withRouter((props) => {
     const [bg, setBg] = useState("");
     const [pokemon, setpokemon] = useState(new PokemonEntrenado());
     const indice = useRef(0)
-    const [pokemonActual, setPokemonActual] = useState(equipoActual[indice.current]);
+    const [pokemonActual, setPokemonActual] = useState(equipoActual[indice.current] || new PokemonEntrenado());
     const [derrota, setDerrota] = useState(false);
     const [x, setX] = useState(0);
     const [y, setY] = useState(0)
     const [continuar, setContinuar] = useState(false);
     const [movimientos, setMovimientos] = useState([]);
     const [movimiento, setMovimiento] = useState(new MovimientoAprendido());
-    const movimientoOponente = useRef(null);
+    const [movimientoOponente, setMovimientoOponente] = useState(null)
+
 
     const movimientoPoderoso = useCallback((movimientosOponent) => {
 
-        var aux= movimientosOponent[0]
+        var aux = movimientosOponent[0]
         movimientosOponent.forEach((move) => {
-            if (move.damage_class.name === "special" || move.damage_class.name === "special") {
+            console.log(move);
+            
+            if (move.power != null) {
+
 
                 aux = { ...move };
 
@@ -65,15 +69,19 @@ export const EncuentroAleatorio = withRouter((props) => {
                         aux.setMovimientosAprendidos(movimientosAprendidos);
 
                         setpokemon(aux);
+                       
+
                         console.log("render");
                     }).catch(e => { return e });
             devolverBG();
 
+        } else {
+            history.push("/iniciacion")
         }
         return () => {
             abortController.abort();
         }
-    },[equipoActual.length, dataList] )
+    }, [equipoActual.length, dataList, history, movimientoPoderoso])
 
 
     const atacarJugador = useCallback((movimiento) => {
@@ -124,14 +132,9 @@ export const EncuentroAleatorio = withRouter((props) => {
 
     }
 
-    useEffect(()=>{
-        const  effect = async () => {
-            movimientoOponente.current =  movimientoPoderoso(pokemon.movimientosAprendidos);
-            
-        }
-        effect();
 
-    })
+
+
 
     useEffect(() => {
         let id;
@@ -142,8 +145,9 @@ export const EncuentroAleatorio = withRouter((props) => {
                 positionChangeX();
                 positionChangeY();
 
-                if(movimientoOponente.current){
-                atacarJugador(movimientoOponente.current)
+                if (pokemonActual.movimientosAprendidos) {
+                    setMovimientoOponente(pokemonActual.movimientosAprendidos)
+                    atacarJugador(movimientoPoderoso(movimientoOponente||pokemonActual.movimientosAprendidos))
                 }
 
             }
@@ -160,9 +164,9 @@ export const EncuentroAleatorio = withRouter((props) => {
                 clearInterval(id);
             }
 
-
-        };
-    }, [atacarJugador, captura, continuar, derrota,pokemonActual.movimientosAprendidos]);
+        }
+        
+    }, [atacarJugador, captura, continuar, derrota, pokemonActual.movimientosAprendidos,movimientoPoderoso,movimientoOponente]);
 
 
 
@@ -206,7 +210,7 @@ export const EncuentroAleatorio = withRouter((props) => {
 
                         history.push("/bautizo");
 
-                    }, 500);
+                    }, 400);
 
 
                 }
